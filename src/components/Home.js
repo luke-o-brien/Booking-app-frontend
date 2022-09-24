@@ -1,14 +1,17 @@
+import React from "react"
+
 function Home() {
-  return (
-    <section className="hero is-fullheight-with-navbar is-warning">
-      <div className="hero-body">
-        <div className="container">
-          <p className="title is-1 has-text-centered has-text-black">
-            Home
-          </p>
+  return ( <>
+    <section>
+      <div>
+        <div>
+          <h2>
+            Booking app
+          </h2>
         </div>
       </div>
     </section>
+  </>
   )
 }
 
