@@ -1,6 +1,8 @@
+import styles from '../styles/Login.module.scss'
 import React from "react";
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { Link } from "react-router-dom"
 
 function Login() {
   const navigate = useNavigate()
@@ -46,15 +48,14 @@ function Login() {
 
 
   return (
-    <>
-      <div>
-        <h2>Login to your account</h2>
+    <div className={styles.page}>
+      <div className={styles.rightSide}>
+        <h2>Log in</h2>
         <div>
           <form>
             <label>Email</label>
             <input
               type="text"
-              placeholder="Enter password"
               name={'email'} 
               value={formData.email} 
               onChange={handleChange}>
@@ -62,17 +63,20 @@ function Login() {
             <label>password</label>
             <input
               type="password"
-              placeholder="Enter your Password"
               name={'password'}
               value={formData.password}
               onChange={handleChange}>
             </input>
-            {errors === "" ? null : <small>{errors}</small>} 
+            {errors === "" ? null : <p className={styles.errormsg}>{errors}</p>} 
             <button onClick={handleSubmit} >Log in</button>
+            <Link to="/register">
+              <button className={styles.registerButton}>Dont have an account? <b className={styles.registerLink}>Sign up</b></button>
+            </Link>
           </form>
         </div>
       </div>
-    </>
+      <div className={styles.leftSide}></div>
+    </div>
   )
 }
 
