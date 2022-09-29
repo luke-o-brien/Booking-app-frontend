@@ -7,7 +7,7 @@ function Register() {
   const navigate = useNavigate()
   
   const [formData, setFormData] = React.useState({
-    name: "",
+    oldPassword: "",
     password: "",
     passwordConfirmation: "",
     email: "",
@@ -23,10 +23,13 @@ function Register() {
 
   async function handleSubmit(e) {
     e.preventDefault()
+    const token = localStorage.getItem('token')
 
     try {
-      const { data } = await axios.post('/api/register', formData)
-      navigate('/login')
+      const { data } = await axios.put('/api/users/63361da3040d7d02344eafc4', formData, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      navigate('/dashboard')
       console.log(data)
 
     } catch (err) {
@@ -37,34 +40,27 @@ function Register() {
   return (
     <>
       <div>
-        <h2>Register for an account</h2>
+        <h2>change your password</h2>
         <form>
-          <label>Name</label>
+          <label>Old Password</label>
           <input
             type="text"
-            name={'name'} 
-            value={formData.name} 
+            name={'oldPassword'} 
+            value={formData.oldPassword} 
             onChange={handleChange}
           ></input>
-          <label>Email Address</label>
-          <input 
-            type="text"
-            name={'email'}
-            value={formData.email} 
-            onChange={handleChange}>
-          </input>
-          <label>Password</label>
+          <label>New Password</label>
           <input 
             type="text"
             name={'password'}
             value={formData.password} 
             onChange={handleChange}>
           </input>
-          <label>Password confirmation</label>
+          <label>confirm new password</label>
           <input 
             type="text"
             name={'passwordConfirmation'}
-            value={formData.passwordConfirmation} 
+            value={formData.newpasswordConfirmation} 
             onChange={handleChange}>
           </input>
           <button onClick={handleSubmit}>Register</button>

@@ -4,6 +4,7 @@ import Home from './components/Home.js'
 import Register from './components/Register.js'
 import Login from './components/Login.js'
 import UserDashboard from './components/UserDashboard.js'
+import PasswordChange from './components/PasswordChange.js'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/dashboard" element={<UserDashboard />} />
+        <Route path="/passwordchange" element={<PasswordChange />} />
       </Routes>
     </Router>
   )
