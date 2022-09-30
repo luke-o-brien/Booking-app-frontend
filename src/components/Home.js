@@ -10,6 +10,7 @@ function Home() {
           <h2>
             Booking app
           </h2>
+          <button>Plan your Next Journey</button>
         </div>
       </div>
     </section>
