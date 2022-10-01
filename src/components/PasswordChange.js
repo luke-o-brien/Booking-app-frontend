@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
+import styles from '../styles/PasswordChange.module.scss'
 
 function ChangePassword() {
   
@@ -71,19 +72,8 @@ function ChangePassword() {
 
   return (
     <>
-      <div>
+      <div className={styles.center}>
         <h2>change your password</h2>
-        <form>
-          <label>Old Password</label>
-          <input
-            type="text"
-            name={'password'} 
-            value={authData.password} 
-            onChange={handleAuthChange}
-          ></input>
-          <button onClick={handleAuthSubmit}>Register</button>
-        </form>
-
         { authorized ?
           <form>
             <label>New Password</label>
@@ -102,7 +92,17 @@ function ChangePassword() {
             </input>
             <button onClick={handleSubmit}>Register</button>
           </form>
-          : null}
+          : 
+          <form className={styles.ChangePasswordForm}>
+            <label>Old Password</label>
+            <input
+              type="text"
+              name={'password'} 
+              value={authData.password} 
+              onChange={handleAuthChange}
+            ></input>
+            <button onClick={handleAuthSubmit}>Proceed</button>
+          </form>}
       </div>
     </>
   )

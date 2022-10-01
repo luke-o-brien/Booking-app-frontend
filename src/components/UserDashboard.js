@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "../styles/UserDashboard.module.scss"
 
 function UserDashboard() {
   return (
@@ -9,12 +10,12 @@ function UserDashboard() {
         <h3>welcome to your dashboard</h3>
       </div>
       <div>
-        <button>Your Upcoming bookings</button>
-        <button>Past Bookings</button>
+        <button className={styles.optionButton}>Your Upcoming bookings</button>
+        <button className={styles.optionButton}>Past Bookings</button>
         <Link to='/passwordchange'>
-          <button>Change password</button>
+          <button className={styles.optionButton}>Change password</button>
         </Link>
-        <button>Edit Account Preferences </button>
+        <button className={styles.optionButton}>Edit Account Preferences </button>
       </div>
     </>
   )

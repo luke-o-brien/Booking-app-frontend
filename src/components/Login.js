@@ -52,7 +52,7 @@ function Login() {
       <div className={styles.rightSide}>
         <h2>Log in</h2>
         <div>
-          <form>
+          <form className={styles.loginForm}>
             <label>Email</label>
             <input
               type="text"
