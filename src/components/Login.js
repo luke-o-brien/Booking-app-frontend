@@ -30,7 +30,10 @@ function Login() {
     try {
       const { data } = await axios.post(`api/login`, formData)
       localStorage.setItem('token', data.token)
+      localStorage.setItem('name', data.name)
+      localStorage.setItem('_id', data._id)
       console.log(data.token)
+      console.log(data)
       navigate('/dashboard') 
     } catch (err) {
       console.log(err)

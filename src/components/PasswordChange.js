@@ -73,9 +73,10 @@ function ChangePassword() {
   return (
     <>
       <div className={styles.center}>
-        <h2>change your password</h2>
+        
         { authorized ?
-          <form>
+          <form className={styles.ChangePasswordForm}>
+            <h2>change your password</h2>
             <label>New Password</label>
             <input 
               type="text"
@@ -94,9 +95,10 @@ function ChangePassword() {
           </form>
           : 
           <form className={styles.ChangePasswordForm}>
+            <h2>change your password</h2>
             <label>Old Password</label>
             <input
-              type="text"
+              type="password"
               name={'password'} 
               value={authData.password} 
               onChange={handleAuthChange}
