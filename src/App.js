@@ -5,6 +5,7 @@ import Register from './components/Register.js'
 import Login from './components/Login.js'
 import UserDashboard from './components/UserDashboard.js'
 import PasswordChange from './components/PasswordChange.js'
+import ServiceSearch from './components/ServiceSearch.js'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/passwordchange" element={<PasswordChange />} />
+        <Route path="/planjourney" element={<ServiceSearch />} />
       </Routes>
     </Router>
   )
