@@ -16,6 +16,7 @@ function Navbar() {
     localStorage.removeItem("token");
     localStorage.removeItem("name");
     localStorage.removeItem("_id");
+    getLoggedInUserId()
   }
   return (
     <>
@@ -27,7 +28,7 @@ function Navbar() {
           <i className="fa-solid fa-x fa-2x" onClick={handleClick} ></i>
         </div>
         <div className={hamburgerMenu ? styles.navcontentActive : styles.navcontent}>
-          { getLoggedInUserId() ? <><div className={styles.accountdetails}><h2>Welcome back</h2><h3>Luke</h3>
+          { getLoggedInUserId() ? <><div className={styles.accountdetails}><h2  className={styles.navbar_welcome} >Welcome back</h2><h3  className={styles.navbar_welcome} >Luke</h3>
             <Link to="/dashboard" className={styles.navbar_item} onClick={handleClick}>
             My Account
             </Link>
