@@ -53,8 +53,9 @@ function Login() {
   return (
     <div className={styles.page}>
       <div className={styles.rightSide}>
-        <h2>Log in</h2>
+        
         <div>
+          <h2 className={styles.signintitle}>Log in</h2>
           <form className={styles.loginForm}>
             <label>Email</label>
             <input

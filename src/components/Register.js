@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
+import styles from '../styles/Register.module.scss'
 
 function Register() {
   
@@ -36,39 +37,43 @@ function Register() {
 
   return (
     <>
-      <div>
-        <h2>Register for an account</h2>
-        <form>
-          <label>Name</label>
-          <input
-            type="text"
-            name={'name'} 
-            value={formData.name} 
-            onChange={handleChange}
-          ></input>
-          <label>Email Address</label>
-          <input 
-            type="text"
-            name={'email'}
-            value={formData.email} 
-            onChange={handleChange}>
-          </input>
-          <label>Password</label>
-          <input 
-            type="text"
-            name={'password'}
-            value={formData.password} 
-            onChange={handleChange}>
-          </input>
-          <label>Password confirmation</label>
-          <input 
-            type="text"
-            name={'passwordConfirmation'}
-            value={formData.passwordConfirmation} 
-            onChange={handleChange}>
-          </input>
-          <button onClick={handleSubmit}>Register</button>
-        </form>
+      <div className={styles.page}>
+        <div className={styles.leftSide}>
+        </div>
+        <div className={styles.rightSide}>
+          <h2>Register for an account</h2>
+          <form className={styles.loginForm} >
+            <label>Name</label>
+            <input
+              type="text"
+              name={'name'} 
+              value={formData.name} 
+              onChange={handleChange}
+            ></input>
+            <label>Email Address</label>
+            <input 
+              type="text"
+              name={'email'}
+              value={formData.email} 
+              onChange={handleChange}>
+            </input>
+            <label>Password</label>
+            <input 
+              type="text"
+              name={'password'}
+              value={formData.password} 
+              onChange={handleChange}>
+            </input>
+            <label>Password confirmation</label>
+            <input 
+              type="text"
+              name={'passwordConfirmation'}
+              value={formData.passwordConfirmation} 
+              onChange={handleChange}>
+            </input>
+            <button onClick={handleSubmit}>Register</button>
+          </form>
+        </div>
       </div>
     </>
   )
