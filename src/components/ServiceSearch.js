@@ -1,4 +1,5 @@
 import React from "react";
+import DisplayServices from "./DisplayServices.js";
 
 function ServiceSearch() {
   return (
@@ -17,6 +18,7 @@ function ServiceSearch() {
         <input>
         </input>
       </form>
+      <DisplayServices />
     </>
   )
 }

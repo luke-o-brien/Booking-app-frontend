@@ -9,15 +9,24 @@ function DisplayServices() {
       const res = await fetch('/api/services')
       const json = await res.json()
       setServices(json)
+      console.log(services)
     }
     getData()
   }, [])
 
-  return (
-    <>
-      <h2>{services.serviceNumber}</h2>
-    </>
-  )
+  return services ? 
+    services.map((service, index) => {
+      return <div key={index}>
+        <h2>{service.serviceNumber}</h2>
+        <h3>{service.operator}</h3>
+        <h3>{service.DepartureDate}</h3>
+        <h4>{service.Origin}</h4>
+        <h4>{service.Destination}</h4>
+        <h5>{service.BusType}</h5>
+
+      </div> 
+    }) : <p>waiting on data</p>
 }
+  
 
 export default DisplayServices
