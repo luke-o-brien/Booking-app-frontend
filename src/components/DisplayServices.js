@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function DisplayServices() {
   
@@ -23,6 +24,7 @@ function DisplayServices() {
         <h4>{service.Origin}</h4>
         <h4>{service.Destination}</h4>
         <h5>{service.BusType}</h5>
+        <Link to={`/bookingform/${service._id}`}> <button>Buy Tickets</button></Link> 
 
       </div> 
     }) : <p>waiting on data</p>
