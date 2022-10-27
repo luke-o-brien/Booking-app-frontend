@@ -20,27 +20,70 @@ function BookingForm() {
   return ( selectedService ?
     <div>
       <div>
-        <h2>Purchase tickets</h2>
-        <h3>Service Information</h3>
-      </div>
-      <div className={styles.serviceContainer}>
-        <div className={styles.operatorService}>
-          <h4><b>{selectedService.operator}</b></h4>
-          <h4>{selectedService.serviceNumber}</h4>
+        <div>
+          <h3>Service Information</h3>
         </div>
+        <div className={styles.serviceContainer}>
+          <div className={styles.operatorService}>
+            <h4><b>{selectedService.operator}</b></h4>
+            <h4>{selectedService.serviceNumber}</h4>
+            <h4>{selectedService.DepartureDate}</h4>
+          </div>
+          <div className={styles.servicedetails}>
+            <div className={styles.origindest}>
+              <h4><b>{selectedService.DepartureTime}</b></h4>
+              <h4>{selectedService.Origin}</h4>
+            </div>
+            <div className={styles.time}>
+              <p>{` ------ 8 hours -----> `}</p>
+            </div>
+            <div className={styles.origindest}>
+              <h4><b>{selectedService.ArrivalTime}</b></h4>
+              <h4>{selectedService.Destination}</h4>
+            </div>
+          </div>
         
-        <h4>Departure {selectedService.DepartureDate}</h4>
-        <h4>{selectedService.DepartureTime}</h4>
-        <h4>Origin: {selectedService.Origin}</h4>
-        <h4>{selectedService.ArrivalDate}</h4>
-        <h4>{selectedService.ArrivalTime}</h4>
-        <h4>Destination: {selectedService.Destination}</h4>
-        <h4>{selectedService.BusType}</h4>
+        
+          <h5 className={styles.overnighticon}>{selectedService.BusType}</h5>
+        </div>
+        <div>
+        
+        </div>
       </div>
       <div>
-        
+        <h2>Purchase Tickets</h2>
+        <div>
+          <form>
+            <label>Title</label>
+            <select>
+              <option>Mx</option>
+              <option>Mr</option>
+              <option>Miss</option>
+              <option>Ms</option>
+              <option>Mrs</option>
+            </select>
+            <label>First Name</label>
+            <input type="text"></input>
+            <label>Last Name</label>
+            <input type="text"></input>
+            <label>Email</label>
+            <input type="email"></input>
+            <label>Phone number</label>
+            <input type="text"></input>
+            <label>Nationality </label>
+            <select>
+              <option>United Kingdom</option>
+              <option>Ireland</option>
+              <option>European Union</option>
+              <option>Non European Union</option>
+              <option>British Overseas Territory</option>
+            </select>
+            
+          </form>
+        </div>
       </div>
     </div> : <p>waiting for data</p>
+    
   )
 }
 

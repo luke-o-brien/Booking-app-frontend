@@ -1,7 +1,7 @@
 .serviceContainer {
   width: 90vw;
   margin-left: 5vw;
-  height: 30vh;
+  height: 25vh;
   border: 0.5px solid black;
   border-radius: 20px;
   display: flex;
@@ -9,7 +9,7 @@
   h4 { 
     font-size: 20px;
     margin: 1px;
-    color: rgb(86, 0, 0);
+    color: rgb(0, 0, 0);
   }
 }
 
@@ -22,4 +22,40 @@
     margin-right: 25px;
     color: black;
   }
+}
+
+.servicedetails {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin-left: 10px;
+}
+
+.origindest {
+  border: 1px red solid;
+  width: 30%;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.time {
+  border: 1px red solid;
+  width: 30%;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.overnighticon {
+  color: white;
+  background-color: darkblue;
+  border-radius: 10px;
+  padding: 10px 40px 10px 40px;
+  margin-top: 10px;
+  margin-left: 10px;
+  width: fit-content;
 }
