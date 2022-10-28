@@ -1,6 +1,7 @@
 import React from "react"
 import styles from "../styles/BookingForm.module.scss"
 import { useParams } from "react-router-dom"
+import axios from 'axios'
 
 
 function BookingForm() {
@@ -16,6 +17,26 @@ function BookingForm() {
     }
     getData()
   }, [serviceId])
+
+
+  async function bookservice(event) {
+    event.preventDefault();
+    const availableSeats = selectedService.SeatNumber
+    if (availableSeats === 1) {
+      console.log("sold out") 
+    } else {
+      const remainingSeats = availableSeats - 1
+      console.log(remainingSeats)
+      console.log("minus one seat")
+      try {
+        const { data } = await axios.put(`/api/services/${serviceId}`, { SeatNumber: remainingSeats })
+        console.log(data)
+      } catch (err) {
+        console.log(err.response.data)
+      }
+    }
+  }
+  
 
   return ( selectedService ?
     <div>
@@ -78,7 +99,7 @@ function BookingForm() {
               <option>Non European Union</option>
               <option>British Overseas Territory</option>
             </select>
-            
+            <button onClick={bookservice}>Book Now</button>
           </form>
         </div>
       </div>
