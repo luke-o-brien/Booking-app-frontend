@@ -18,9 +18,35 @@ function BookingForm() {
     getData()
   }, [serviceId])
 
+  const [formData, setFormData] = React.useState({
+    serviceId: serviceId,
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",  
+    nationality: "",
+  })
+
+
+  function handleChange(e) {
+    const { name, value } = e.target
+    console.log(formData)
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    })
+  }
 
   async function bookservice(event) {
     event.preventDefault();
+    try {
+      const { data } = await axios.post(`/api/services/${serviceId}/bookings`, formData)
+      console.log(data)
+
+    } catch (err) {
+      console.log(err.response.data)
+    }
     const availableSeats = selectedService.SeatNumber
     if (availableSeats === 1) {
       console.log("sold out") 
@@ -28,6 +54,7 @@ function BookingForm() {
       const remainingSeats = availableSeats - 1
       console.log(remainingSeats)
       console.log("minus one seat")
+      console.log(formData)
       try {
         const { data } = await axios.put(`/api/services/${serviceId}`, { SeatNumber: remainingSeats })
         console.log(data)
@@ -75,24 +102,38 @@ function BookingForm() {
         <h2>Purchase Tickets</h2>
         <div>
           <form>
-            <label>Title</label>
-            <select>
-              <option>Mx</option>
-              <option>Mr</option>
-              <option>Miss</option>
-              <option>Ms</option>
-              <option>Mrs</option>
-            </select>
             <label>First Name</label>
-            <input type="text"></input>
+            <input
+              type="text"
+              name={'firstName'} 
+              value={formData.firstName} 
+              onChange={handleChange}>
+            </input>
             <label>Last Name</label>
-            <input type="text"></input>
+            <input
+              type="text"
+              name={'lastName'} 
+              value={formData.lastName} 
+              onChange={handleChange}>
+            </input>
             <label>Email</label>
-            <input type="email"></input>
+            <input  
+              type="text"
+              name={'email'} 
+              value={formData.email} 
+              onChange={handleChange}>
+            </input>
             <label>Phone number</label>
-            <input type="text"></input>
+            <input
+              type="text"
+              name={'phoneNumber'} 
+              value={formData.phoneNumber} 
+              onChange={handleChange}></input>
             <label>Nationality </label>
-            <select>
+            <select
+              name={'nationality'} 
+              value={formData.nationality} 
+              onChange={handleChange}>
               <option>United Kingdom</option>
               <option>Ireland</option>
               <option>European Union</option>
