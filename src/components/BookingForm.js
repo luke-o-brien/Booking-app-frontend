@@ -68,34 +68,45 @@ function BookingForm() {
   return ( selectedService ?
     <div>
       <div>
-        <div>
-          <h3>Service Information</h3>
-        </div>
-        <div className={styles.serviceContainer}>
-          <div className={styles.operatorService}>
-            <h4><b>{selectedService.operator}</b></h4>
-            <h4>{selectedService.serviceNumber}</h4>
-            <h4>{selectedService.DepartureDate}</h4>
+        <div className={styles.servicebanner}>
+          <div className={styles.servicedetailscontainer}>
+            <h3 className={styles.serviceinfo}>Service Information</h3>
+            <div className={styles.serviceContainer}>
+              <div className={styles.operatorService}>
+                <h4><b>{selectedService.operator}</b></h4>
+                <h4>{selectedService.serviceNumber}</h4>
+                <h4>{selectedService.DepartureDate}</h4>
+              </div>
+              <div className={styles.servicedetails}>
+                <div className={styles.OriginDest}>
+                  <h4>{selectedService.Origin} to {selectedService.Destination} </h4>
+                </div>
+                <div className={styles.time}>
+                
+              
+                </div>
+                <div className={styles.timings}>
+                  <div className={styles.timediv}>
+                    <h4>Depart</h4>
+                    <h4><b>{selectedService.DepartureTime}</b></h4>
+                  </div>
+                  <div className={styles.timediv}>
+                    <h4>{` ------ 8 hours ------ `}</h4>
+                    <small> + 1 day</small> 
+                  </div>
+                  <div className={styles.timediv}>
+                    <h4>Arrive</h4>
+                    <h4><b>{selectedService.ArrivalTime}</b></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+          <div className={styles.furtherinfo}>
+            <h5 className={styles.overnighticon}>{selectedService.BusType} <i className="fa-solid fa-moon"></i></h5>
+            <h5 className={styles.allinfo}>Full Journey Details</h5>
+            <h5 className={styles.amendsearch}>Amend Search</h5>
           </div>
-          <div className={styles.servicedetails}>
-            <div className={styles.origindest}>
-              <h4><b>{selectedService.DepartureTime}</b></h4>
-              <h4>{selectedService.Origin}</h4>
-            </div>
-            <div className={styles.time}>
-              <p>{` ------ 8 hours -----> `}</p>
-            </div>
-            <div className={styles.origindest}>
-              <h4><b>{selectedService.ArrivalTime}</b></h4>
-              <h4>{selectedService.Destination}</h4>
-            </div>
-          </div>
-        
-        
-          <h5 className={styles.overnighticon}>{selectedService.BusType}</h5>
-        </div>
-        <div>
-        
         </div>
       </div>
       <div>

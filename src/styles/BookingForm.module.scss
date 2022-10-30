@@ -1,15 +1,36 @@
+// Service Info
+
+.servicebanner {
+  width: 100vw;
+  background-color: #00453e;
+  height: 25vh ;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+}
+
+.servicedetailscontainer {
+  width: 75vw;
+}
+
+.furtherinfo {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
 .serviceContainer {
   width: 90vw;
-  margin-left: 5vw;
-  height: 25vh;
-  border: 0.5px solid black;
-  border-radius: 20px;
+  margin-left: 10vw;
+  height: 20vh;
+  color: #ffffff;
+  border-radius: 1.75rem;
   display: flex;
   flex-direction: column;
   h4 { 
     font-size: 20px;
     margin: 1px;
-    color: rgb(0, 0, 0);
   }
 }
 
@@ -17,45 +38,78 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  width: 80%;
   margin: 10px;
   h4 {
     margin-right: 25px;
-    color: black;
+    color: #ffffff;
   }
 }
 
 .servicedetails {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   width: 80%;
-  margin-left: 10px;
+  margin: 10px;
 }
-
-.origindest {
-  border: 1px red solid;
-  width: 30%;
-  margin-right: 10px;
+.serviceinfo {
+  font-size: 40px;
+  margin-left: 10.5vw;
+}
+.OriginDest {
+  // border: 1px red solid;
+  
+  margin-right: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.time {
-  border: 1px red solid;
-  width: 30%;
-  margin-right: 10px;
+.timings {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+}
+
+.timediv {
+  margin-right: 20px;
+  text-align: center;
 }
 
 .overnighticon {
   color: white;
   background-color: darkblue;
+  width:80%;
   border-radius: 10px;
-  padding: 10px 40px 10px 40px;
-  margin-top: 10px;
-  margin-left: 10px;
-  width: fit-content;
+  padding: 5px 0px 5px 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.allinfo {
+  border: 1px #ffffff solid;
+  padding: 15px 40px 15px 40px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  width:80%;
+  text-align: center;
+}
+
+.allinfo:hover {
+  background-color: #ffffff;
+  color: #00453e;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.amendsearch {
+  padding: 15px 40px 15px 40px;
+  background-color: #006d62;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  width:80%;
+  text-align: center;
 }
