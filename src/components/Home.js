@@ -6,13 +6,23 @@ import { Link } from "react-router-dom"
 function Home() {
   return ( <>
     <section>
-      <Navbar />
-      <div>
+      <div className={styles.hero}>
         <div>
+          <Navbar />
+        </div>
+        <div className={styles.herocontainer }>
           <Link to="/planjourney" className={styles.planbutton}>
-          Plan your Next Journey
+          Book Now
           </Link>
         </div>
+      </div>
+      <h2 className={styles.title}>London to Den Haag Twice Daily</h2>
+      <h3 className={styles.tagline}>Travel affordably and in comfort with Eurolink</h3>
+      <div className={styles.buttondiv}>
+        <button className={styles.homebuttons}>Manage My Booking</button>
+        <button className={styles.homebuttons}>Onboard Experience</button>
+        <button className={styles.homebuttons}>FAQ</button>
+        <button className={styles.homebuttons}>Future Plans</button>
       </div>
     </section>
   </>
