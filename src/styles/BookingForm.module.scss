@@ -3,7 +3,7 @@
 .servicebanner {
   width: 100vw;
   background-color: #00453e;
-  height: 25vh ;
+  height: auto;
   color: #ffffff;
   display: flex;
   flex-direction: row;
@@ -23,7 +23,7 @@
 .serviceContainer {
   width: 90vw;
   margin-left: 10vw;
-  height: 20vh;
+  height: auto;
   color: #ffffff;
   border-radius: 1.75rem;
   display: flex;
@@ -56,6 +56,7 @@
 .serviceinfo {
   font-size: 40px;
   margin-left: 10.5vw;
+  width: 100%;
 }
 .OriginDest {
   // border: 1px red solid;
@@ -79,11 +80,9 @@
 .overnighticon {
   color: white;
   background-color: darkblue;
-  width:80%;
   border-radius: 10px;
-  padding: 5px 0px 5px 0px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-left: 10px;
+  padding: 2px 40px 2px 40px;
   text-align: center;
 }
 
@@ -108,7 +107,7 @@
   padding: 15px 40px 15px 40px;
   background-color: #006d62;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   border-radius: 10px;
   width:80%;
   text-align: center;

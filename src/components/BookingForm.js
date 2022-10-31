@@ -62,6 +62,20 @@ function BookingForm() {
         console.log(err.response.data)
       }
     }
+
+    // window.Email.send({
+    //   Host: "smtp.elasticemail.com",
+    //   Username: "lukeobrien02@gmail.com",
+    //   Password: "4FBBD0424B08AA058DA041736426649433B6",
+    //   To: 'lukeobrien02@gmail.com',
+    //   From: "lukeobrien02@gmail.com",
+    //   Subject: "Booking Confirmation",
+    //   Body: ` <h1 style="color:red;">Booking Confirmed</h1>
+    //   <p>You're off to ${selectedService.Destination}</p>
+    //   <h2>Journey details</h2>`,
+    // }).then(
+    //   message => alert(message)
+    // );
   }
   
 
@@ -76,6 +90,7 @@ function BookingForm() {
                 <h4><b>{selectedService.operator}</b></h4>
                 <h4>{selectedService.serviceNumber}</h4>
                 <h4>{selectedService.DepartureDate}</h4>
+                <h5 className={styles.overnighticon}>{selectedService.BusType} <span style={{ color: "#ffff80" }}><i className="fa-solid fa-moon yellow"></i></span></h5>
               </div>
               <div className={styles.servicedetails}>
                 <div className={styles.OriginDest}>
@@ -103,7 +118,6 @@ function BookingForm() {
             </div>
           </div>  
           <div className={styles.furtherinfo}>
-            <h5 className={styles.overnighticon}>{selectedService.BusType} <i className="fa-solid fa-moon"></i></h5>
             <h5 className={styles.allinfo}>Full Journey Details</h5>
             <h5 className={styles.amendsearch}>Amend Search</h5>
           </div>
