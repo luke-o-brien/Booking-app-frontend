@@ -65,10 +65,10 @@ function BookingForm() {
 
     // window.Email.send({
     //   Host: "smtp.elasticemail.com",
-    //   Username: "lukeobrien02@gmail.com",
-    //   Password: "4FBBD0424B08AA058DA041736426649433B6",
-    //   To: 'lukeobrien02@gmail.com',
-    //   From: "lukeobrien02@gmail.com",
+    //   Username: "",
+    //   Password: "",
+    //   To: '',
+    //   From: "",
     //   Subject: "Booking Confirmation",
     //   Body: ` <h1 style="color:red;">Booking Confirmed</h1>
     //   <p>You're off to ${selectedService.Destination}</p>
