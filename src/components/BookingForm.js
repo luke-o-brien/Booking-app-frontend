@@ -8,6 +8,7 @@ function BookingForm() {
 
   const { serviceId } = useParams()
   const [selectedService, setSelectedService] = React.useState(undefined)
+  // const [nationality, setNationality] = React.useState(undefined)
 
   React.useEffect(() => {
     const getData = async () => {
@@ -37,7 +38,6 @@ function BookingForm() {
       [name]: value,
     })
   }
-
   async function bookservice(event) {
     event.preventDefault();
     try {
@@ -123,48 +123,58 @@ function BookingForm() {
           </div>
         </div>
       </div>
-      <div>
+      <div className={styles.bookingForm}>
         <h2>Purchase Tickets</h2>
-        <div>
+        <div className={styles.formmain}>
           <form>
             <label>First Name</label>
             <input
               type="text"
               name={'firstName'} 
               value={formData.firstName} 
-              onChange={handleChange}>
+              onChange={handleChange}
+              className={styles.textinput}>
             </input>
             <label>Last Name</label>
             <input
               type="text"
               name={'lastName'} 
               value={formData.lastName} 
-              onChange={handleChange}>
+              onChange={handleChange}
+              className={styles.textinput}>
             </input>
             <label>Email</label>
             <input  
               type="text"
               name={'email'} 
               value={formData.email} 
-              onChange={handleChange}>
+              onChange={handleChange}
+              className={styles.textinput}>
             </input>
             <label>Phone number</label>
             <input
               type="text"
               name={'phoneNumber'} 
               value={formData.phoneNumber} 
-              onChange={handleChange}></input>
+              onChange={handleChange}
+              className={styles.textinput}></input>
             <label>Nationality </label>
             <select
               name={'nationality'} 
               value={formData.nationality} 
               onChange={handleChange}>
+              <option>Please select your nationality</option>
               <option>United Kingdom</option>
               <option>Ireland</option>
               <option>European Union</option>
               <option>Non European Union</option>
-              <option>British Overseas Territory</option>
             </select>
+            {formData.nationality === "United Kingdom" ? <><p className={styles.immigrationblurb}>UK passport holders</p> <label>I understand that i am required to have the correct travel documents</label><input type="checkbox" className={styles.checkbox}></input></> : 
+              formData.nationality === "Ireland" ? <p className={styles.immigrationblurb}>Irish Citizens are free to travel to the UK and EU using a valid passport or passport card</p> : 
+                formData.nationality === "European Union" ? <p className={styles.immigrationblurb}>EU citizens can travel to EU without restrictions</p> : 
+                  formData.nationality === "Non European Union" ? <p className={styles.immigrationblurb}>Please check the entry requirements for entry into your destination country</p> :
+                    null
+            }
             <button onClick={bookservice}>Book Now</button>
           </form>
         </div>
