@@ -7,7 +7,9 @@ import axios from 'axios'
 function BookingForm() {
 
   const { serviceId } = useParams()
+  
   const [selectedService, setSelectedService] = React.useState(undefined)
+  const [termsAgree, setTermsAgree] = React.useState(false)
   // const [nationality, setNationality] = React.useState(undefined)
 
   React.useEffect(() => {
@@ -38,30 +40,35 @@ function BookingForm() {
       [name]: value,
     })
   }
+
+  function handlecheck() {
+    setTermsAgree(!termsAgree)
+  }
   async function bookservice(event) {
     event.preventDefault();
-    try {
-      const { data } = await axios.post(`/api/services/${serviceId}/bookings`, formData)
-      console.log(data)
-
-    } catch (err) {
-      console.log(err.response.data)
-    }
-    const availableSeats = selectedService.SeatNumber
-    if (availableSeats === 1) {
-      console.log("sold out") 
-    } else {
-      const remainingSeats = availableSeats - 1
-      console.log(remainingSeats)
-      console.log("minus one seat")
-      console.log(formData)
+    if (termsAgree === true) {
       try {
-        const { data } = await axios.put(`/api/services/${serviceId}`, { SeatNumber: remainingSeats })
+        const { data } = await axios.post(`/api/services/${serviceId}/bookings`, formData)
         console.log(data)
+
       } catch (err) {
         console.log(err.response.data)
       }
-    }
+      const availableSeats = selectedService.SeatNumber
+      if (availableSeats === 1) {
+        console.log("sold out") 
+      } else {
+        const remainingSeats = availableSeats - 1
+        console.log(remainingSeats)
+        console.log("minus one seat")
+        console.log(formData)
+        try {
+          const { data } = await axios.put(`/api/services/${serviceId}`, { SeatNumber: remainingSeats })
+          console.log(data)
+        } catch (err) {
+          console.log(err.response.data)
+        }
+      }
 
     // window.Email.send({
     //   Host: "smtp.elasticemail.com",
@@ -76,6 +83,9 @@ function BookingForm() {
     // }).then(
     //   message => alert(message)
     // );
+    } else {
+      console.log("not checked")
+    }
   }
   
 
@@ -169,12 +179,16 @@ function BookingForm() {
               <option>European Union</option>
               <option>Non European Union</option>
             </select>
-            {formData.nationality === "United Kingdom" ? <><p className={styles.immigrationblurb}>UK passport holders</p> <label>I understand that i am required to have the correct travel documents</label><input type="checkbox" className={styles.checkbox}></input></> : 
+            {formData.nationality === "United Kingdom" ? <><p className={styles.immigrationblurb}>UK passport holders</p></> : 
               formData.nationality === "Ireland" ? <p className={styles.immigrationblurb}>Irish Citizens are free to travel to the UK and EU using a valid passport or passport card</p> : 
                 formData.nationality === "European Union" ? <p className={styles.immigrationblurb}>EU citizens can travel to EU without restrictions</p> : 
                   formData.nationality === "Non European Union" ? <p className={styles.immigrationblurb}>Please check the entry requirements for entry into your destination country</p> :
                     null
             }
+            <div className={styles.TC}>
+              <label>I agree to the <a>terms and conditions</a></label>
+              <input type="checkbox" className={styles.checkbox} onChange={handlecheck}></input>
+            </div>
             <button onClick={bookservice}>Book Now</button>
           </form>
         </div>
