@@ -45,7 +45,7 @@ function Navbar() {
           <Link to="/" className={styles.navbar_item} onClick={handleClick}>
           Home
           </Link>
-          <Link to="/planjourney" className={styles.navbar_item} onClick={handleClick}>
+          <Link to="/SearchScreen" className={styles.navbar_item} onClick={handleClick}>
           Plan a Journey
           </Link>
           

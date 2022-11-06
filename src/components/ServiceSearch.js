@@ -1,5 +1,6 @@
 import React from "react";
 import DisplayServices from "./DisplayServices.js";
+import styles from "../styles/ServiceSearch.module.scss"
 
 function ServiceSearch() {
   return (
@@ -18,6 +19,11 @@ function ServiceSearch() {
         <input>
         </input>
       </form>
+      <div className={styles.titlecontainer}>
+        <h2 className={styles.title}>Select Departure</h2>
+        <h3 className={styles.route}>London - Den Haag</h3>
+        <h3>Thursday 4th November</h3>
+      </div>
       <DisplayServices />
     </>
   )

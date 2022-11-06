@@ -7,6 +7,7 @@ import UserDashboard from './components/UserDashboard.js'
 import PasswordChange from './components/PasswordChange.js'
 import ServiceSearch from './components/ServiceSearch.js'
 import BookingForm from './components/BookingForm.js'
+import SearchScreen from './components/SearchScreen.js'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/passwordchange" element={<PasswordChange />} />
         <Route path="/planjourney" element={<ServiceSearch />} />
         <Route path="/BookingForm/:serviceId" element={<BookingForm /> } />
+        <Route path="/SearchScreen" element={<SearchScreen />} />
       </Routes>
     </Router>
   )
