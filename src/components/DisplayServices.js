@@ -20,7 +20,7 @@ function DisplayServices() {
 
   React.useEffect(() => {
     const getData = async () => {
-      const res = await fetch(`/api/servicesbysearch?date=${params.date}`)
+      const res = await fetch(`/api/servicesbysearch?origin=${params.origin}&destination=${params.destination}&date=${params.date}`)
       const json = await res.json()
       setServices(json)
       console.log(json)
@@ -34,8 +34,8 @@ function DisplayServices() {
       <h3 className={styles.route}>{params.origin} - {params.destination}</h3>
       <h3>{displayDate}</h3>
     </div>
-    {services ? 
-      services.map((service, index) => {
+    {services ? <>
+      {services.map((service, index) => {
         return <div key={index} className={styles.servicecontainer}>
           <div className={styles.servicetop}>
             <div className={styles.servicetopdetails}>
@@ -62,7 +62,7 @@ function DisplayServices() {
             <Link to={`/bookingform/${service._id}`}> <button className={styles.bookbutton}>Buy Tickets</button></Link> 
           </div>
         </div> 
-      }) : <p>waiting on data</p>}
+      })} <small>all times are local</small></> : <p>waiting on data</p>}
   </> )
 }
   
