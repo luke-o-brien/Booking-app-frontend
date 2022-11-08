@@ -21,7 +21,7 @@ function Navbar() {
   return (
     <>
       <div className={styles.hamburgerContainer}>
-        <i className="fa-solid fa-bars fa-2x" onClick={handleClick} ></i><h2 className={styles.menutext}>Menu</h2>
+        <i className="fa-solid fa-bars fa-2x" onClick={handleClick} ></i><h2 className={styles.menutext}></h2>
       </div>
       <nav className={ hamburgerMenu ? styles.navbarActive : styles.navbar}>
         <div className={styles.exititem}>

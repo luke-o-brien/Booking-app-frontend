@@ -2,11 +2,13 @@ import React from "react"
 import styles from "../styles/BookingForm.module.scss"
 import { useParams } from "react-router-dom"
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 
 
 function BookingForm() {
 
   const { serviceId } = useParams()
+  const navigate = useNavigate()
   
   const [selectedService, setSelectedService] = React.useState(undefined)
   const [termsAgree, setTermsAgree] = React.useState(false)
@@ -65,6 +67,12 @@ function BookingForm() {
         try {
           const { data } = await axios.put(`/api/services/${serviceId}`, { SeatNumber: remainingSeats })
           console.log(data)
+          navigate("/BookingConfirmed", { state: {
+            bookingId: data._id,
+            serviceId: serviceId,
+            email: formData.email,
+            firstname: formData.firstName,
+          } })
         } catch (err) {
           console.log(err.response.data)
         }
