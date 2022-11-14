@@ -37,7 +37,7 @@ function BookingConfirmation() {
           { selectedService ? <h2 className={styles.youreoff}>{details.firstname} you&apos;re going to {selectedService.Destination}!</h2> : null }
           <h3 className={styles.emailmessage}>A confirmation email has been sent to <b>{details.email}</b></h3>
           <h3 className={styles.bookingId}>Booking ID</h3>
-          <p  className={styles.id}><b>{details.bookingId}</b></p>
+          <p  className={styles.id}><b>{details.customerref}</b></p>
         </div>
         <div>
           <h2>Journey Summary</h2>

@@ -63,7 +63,6 @@ function BookingForm() {
         const remainingSeats = availableSeats - 1
         console.log(remainingSeats)
         console.log("minus one seat")
-        console.log(formData)
         try {
           const { data } = await axios.put(`/api/services/${serviceId}`, { SeatNumber: remainingSeats })
           console.log(data)

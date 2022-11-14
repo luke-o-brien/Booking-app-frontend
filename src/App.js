@@ -9,6 +9,7 @@ import ServiceSearch from './components/ServiceSearch.js'
 import BookingForm from './components/BookingForm.js'
 import SearchScreen from './components/SearchScreen.js'
 import BookingConfirmation from './components/BookingConfirmation.js'
+import YourBookings from './components/YourBookings.js'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/BookingForm/:serviceId" element={<BookingForm /> } />
         <Route path="/SearchScreen" element={<SearchScreen />} />
         <Route path="/BookingConfirmed" element={<BookingConfirmation />} />
+        <Route path="/YourBookings" element={<YourBookings/>} />
       </Routes>
     </Router>
   )

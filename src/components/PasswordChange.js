@@ -2,12 +2,15 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 import styles from '../styles/PasswordChange.module.scss'
+import { getLoggedInUserId } from "../lib/auth.js";
 
 function ChangePassword() {
   
   const navigate = useNavigate()
-  
+  const userId = getLoggedInUserId()
   const [authorized, setAuthorized] = React.useState(false)
+  
+  
   const [authData, setAuthData] = React.useState({
     password: "",
   }) 
@@ -31,7 +34,7 @@ function ChangePassword() {
     e.preventDefault()
     const token = localStorage.getItem('token')
     try {
-      const { data } = await axios.post('/api/users/63376aa6400c76a2576364ad/authorize', authData, {
+      const { data } = await axios.post(`/api/users/${userId}/authorize`, authData, {
         headers: { Authorization: `Bearer ${token}` },
       })
       console.log(data)
@@ -56,7 +59,7 @@ function ChangePassword() {
     const token = localStorage.getItem('token')
     if (formData.password === formData.passwordConfirmation) {
       try {
-        const { data } = await axios.put('/api/users/63376aa6400c76a2576364ad', formData, {
+        const { data } = await axios.put(`/api/users/${userId}`, formData, {
           headers: { Authorization: `Bearer ${token}` },
         })
         navigate('/dashboard')
