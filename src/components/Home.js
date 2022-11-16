@@ -1,7 +1,8 @@
 import React from "react"
 import Navbar from "./Navbar.js"
 import styles from "../styles/Home.module.scss"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
+import ServiceSearchBox from "./ServiceSearchBox"
 
 function Home() {
   return ( <>
@@ -10,12 +11,13 @@ function Home() {
         <div>
           <Navbar />
         </div>
-        <div className={styles.herocontainer }>
-          <Link to="/planjourney" className={styles.planbutton}>
-          Book Now
-          </Link>
+        <div>
+          
+          < ServiceSearchBox />
         </div>
+        
       </div>
+      
       <h2 className={styles.title}>London to Den Haag Twice Daily</h2>
       <h3 className={styles.tagline}>Travel affordably and in comfort with Eurolink</h3>
       <div className={styles.buttondiv}>
