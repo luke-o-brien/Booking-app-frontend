@@ -33,15 +33,12 @@ function SearchScreen() {
     } })
   }
   return ( <>
-    <div>
-      
-    </div>
     <div className={styles.buytickets}>
       <h1 className={styles.title}>Buy Tickets</h1>
       <form className={styles.form}>
         <div className={styles.origindestcontainer}>
           <div className={styles.origindest}>
-            <label>Origin</label>
+            <label className={styles.labels}>Origin</label>
             <select
               className={styles.selectfield}
               name="origin"
@@ -53,7 +50,7 @@ function SearchScreen() {
             </select>
           </div>
           <div className={styles.origindest}>
-            <label>Destination</label>
+            <label className={styles.labels}>Destination</label>
             <select
               className={styles.selectfield}
               name="destination"
@@ -68,7 +65,7 @@ function SearchScreen() {
         <div className={styles.secondrow}>
           <div className={styles.datepasscontainer}>
             <div className={styles.datepass}>
-              <label>Date</label>
+              <label className={styles.labels}>Date</label>
               <input 
                 className={styles.selectfieldsecond}
                 type="date"
@@ -78,7 +75,7 @@ function SearchScreen() {
               </input>
             </div>
             <div className={styles.datepass}>
-              <label>Number of Passengers</label>
+              <label className={styles.labels}>Number of Passengers</label>
               <select
                 className={styles.selectfieldsecond}>
                 <option>1</option>

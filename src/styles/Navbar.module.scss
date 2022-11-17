@@ -1,106 +1,45 @@
-.hamburgerContainer {
+.topnav {
+  background-color: white;
   display: flex;
-  color: #000000;
-  justify-content: flex-end;
-  margin-left: 78%;
-  margin-right: 2%;
-  margin-top: 10px;
-  width: 20%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.rightitems {
+  display: flex;
+  flex-direction: row;
+  margin-right: 1vw;
+}
+
+.leftitems {
+  margin-left: 1vw;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: 20px;
+  padding: 5px 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  color: black;
+}
+
+.buttons:hover {
+  background-color: rgba(119, 163, 123, 0.633);
+  cursor: pointer;
+}
+.buttontext {
+  margin: 7.5px;
+  display: flex;
   align-items: center;
 }
 
-.hamburgerContainer:hover {
-  cursor: pointer;
-}
-.navbar {
-  background-color: #00453e;
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-  height: 100vh;
-  width: 100vw;
-  padding: 10px 0px;
-  background: #ffffff;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  z-index: 2;
-  transition: ease-in-out 500ms;
-}
-
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  20% {opacity: 0.1;}
-  100% { opacity: 0; } 
-}
-
-.navbarActive {
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-  color: rgb(255, 255, 255);
-  height: 100vh;
-  width: 20vw;
-  padding: 10px 0px;
-  background:#00453e;
-  position: absolute;
-  top: 0;
-  left: 80vw;
-  transition: ease-in-out 500ms;
-  
-}
-
-.navcontent {
-  margin-top: 50px;
-  height: 80vh;
-  width: 100%;
-  animation: fadeOut 2s;
-}
-
-.navcontentActive {
-  margin-top: 50px;
-  height: 80vh;
-  width: 100%;
-  animation: fadeIn 2s;
-}
-.navbar_item {
-  font-weight: 200;
-  width: 100%;
-  text-align: left;
-  font-size: 40px;
-  margin: 40px 10px;
-  display: block;
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  25% {opacity: 0;}
-  100% { opacity: 1; }
-}
-.navbar_item:hover {
-  text-decoration: underline 1px rgb(0, 0, 0);
-}
-.exititem {
-  display: flex;
-  justify-content: right;
-  margin-right: 10px;
-}
-
-.menutext {
-  font-size: 30px;
-  padding-left: 5px;
-}
-
-.accountdetails {
-  border-bottom: 1px black solid;
-  margin: 10px;
-}
-
-.navbar_welcome {
-  font-weight: 200;
-  width: 100%;
-  text-align: left;
-  font-size: 30px;
-  margin: 0px 10px;
-  display: block;
-  color: rgb(0, 0, 0);
-  text-decoration: none;
+.logo {
+  color: #006006;
+  font-weight: 800;
+  font-size: 26px;
 }

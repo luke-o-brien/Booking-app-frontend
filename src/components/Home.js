@@ -7,15 +7,9 @@ import ServiceSearchBox from "./ServiceSearchBox"
 function Home() {
   return ( <>
     <section>
-      <div className={styles.hero}>
-        <div>
-          <Navbar />
-        </div>
-        <div>
-          
-          < ServiceSearchBox />
-        </div>
-        
+      <div>
+        <Navbar />
+        < ServiceSearchBox />
       </div>
       
       <h2 className={styles.title}>London to Den Haag Twice Daily</h2>

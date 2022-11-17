@@ -12,6 +12,7 @@ function SearchScreen() {
     date: "",
   })
 
+  const [expand, setExpand] = React.useState(false)
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -21,6 +22,10 @@ function SearchScreen() {
       ...formData,
       [name]: value,
     })
+  }
+
+  function handleExpand() {
+    setExpand(true)
   }
 
   function handlesubmit(e) {
@@ -34,7 +39,7 @@ function SearchScreen() {
   }
   return ( <>
     <div className={styles.buytickets}>
-      <h1 className={styles.title}>Buy Tickets</h1>
+      <h1 className={styles.title}>Where are you Going?</h1>
       <form className={styles.form}>
         <div className={styles.origindestcontainer}>
           <div className={styles.origindest}>
@@ -43,6 +48,7 @@ function SearchScreen() {
               className={styles.selectfield}
               name="origin"
               onChange={handleChange}
+              onClick={handleExpand}
               value={formData.origin}>
               <option></option>
               <option>London</option>
@@ -55,6 +61,7 @@ function SearchScreen() {
               className={styles.selectfield}
               name="destination"
               onChange={handleChange}
+              onClick={handleExpand}
               value={formData.destination}>
               <option></option>
               <option>London</option>
@@ -62,7 +69,7 @@ function SearchScreen() {
             </select>
           </div>
         </div>
-        <div className={styles.secondrow}>
+        {<div className={expand ? `${styles.secondrow}` : `${styles.secondrowhidden}`}>
           <div className={styles.datepasscontainer}>
             <div className={styles.datepass}>
               <label>Date</label>
@@ -90,7 +97,7 @@ function SearchScreen() {
           <div className={styles.submit}>
             <button className={styles.submitbutton} onClick={handlesubmit}>Search</button>
           </div>
-        </div>
+        </div>}
         
       </form>
     </div>

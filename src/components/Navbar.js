@@ -1,57 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styles from '../styles/Navbar.module.scss'
-import { getLoggedInUserId } from "../lib/auth.js";
+// import { getLoggedInUserId } from "../lib/auth.js";
 
 function Navbar() {
 
-  const [hamburgerMenu , setHamburgerMenu] = React.useState(false)
+  // const [hamburgerMenu , setHamburgerMenu] = React.useState(false)
 
-  function handleClick() {
-    setHamburgerMenu(!hamburgerMenu)
-  }
+  // function handleClick() {
+  //   setHamburgerMenu(!hamburgerMenu)
+  // }
 
-  function logout() {
-    console.log("logout")
-    localStorage.removeItem("token");
-    localStorage.removeItem("name");
-    localStorage.removeItem("_id");
-    getLoggedInUserId()
-  }
+  // function logout() {
+  //   console.log("logout")
+  //   localStorage.removeItem("token");
+  //   localStorage.removeItem("name");
+  //   localStorage.removeItem("_id");
+  //   getLoggedInUserId()
+  // }
   return (
-    <>
-      <div className={styles.hamburgerContainer}>
-        <i className="fa-solid fa-bars fa-2x" onClick={handleClick} ></i><h2 className={styles.menutext}></h2>
+    <div>
+      <div className={styles.topnav}>
+        <div className={styles.leftitems}>
+          <div className={styles.logo}>EuroLink</div>
+        </div>
+        <div className={styles.rightitems}>
+          <Link to="/Login"><div className={styles.buttons}><p className={styles.buttontext}>Log In</p><i className="fa-regular fa-user"></i></div></Link>
+          <div className={styles.buttons}><p className={styles.buttontext}>Menu</p><i className="fa-solid fa-bars"></i></div>
+        </div>
       </div>
-      <nav className={ hamburgerMenu ? styles.navbarActive : styles.navbar}>
-        <div className={styles.exititem}>
-          <i className="fa-solid fa-x fa-2x" onClick={handleClick} ></i>
-        </div>
-        <div className={hamburgerMenu ? styles.navcontentActive : styles.navcontent}>
-          { getLoggedInUserId() ? <><div className={styles.accountdetails}><h2  className={styles.navbar_welcome} >Welcome back</h2><h3  className={styles.navbar_welcome} >Luke</h3>
-            <Link to="/dashboard" className={styles.navbar_item} onClick={handleClick}>
-            My Account
-            </Link>
-            <Link to="/" className={styles.navbar_item} onClick={logout}>Log Out</Link></div></> : 
-            <>
-              <Link to="/register" className={styles.navbar_item} onClick={handleClick}>
-                register
-              </Link> 
-              <Link to="/login" className={styles.navbar_item} onClick={handleClick}>
-                Login
-              </Link>
-            </> 
-          }
-          <Link to="/" className={styles.navbar_item} onClick={handleClick}>
-          Home
-          </Link>
-          <Link to="/SearchScreen" className={styles.navbar_item} onClick={handleClick}>
-          Plan a Journey
-          </Link>
-          
-        </div>
-      </nav>
-    </>
+    </div>
   )
 }
 
