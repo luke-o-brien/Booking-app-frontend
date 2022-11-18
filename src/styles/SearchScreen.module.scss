@@ -82,7 +82,7 @@
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media (width <= 400px) {
   .title {
     font-size: 45px;
     margin-bottom: 20px;
