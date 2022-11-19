@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styles from '../styles/Navbar.module.scss'
 // import { getLoggedInUserId } from "../lib/auth.js";
 import { getLoggedInUserId } from "../lib/auth";
+import accountimage from "../images/dreamstime_xxl_154591729.jpg"
 
 function Navbar() {
   const [hamburgerMenu , setHamburgerMenu] = React.useState(false)
@@ -44,10 +45,10 @@ function Navbar() {
             <span className={styles.menuIcon}><i className="fa-solid fa-ticket fa-fw"></i></span>
             <h3 className={styles.bottomlink}>Plan a Journey</h3>
           </div></Link>
-          <div className={styles.menuItems}>
+          <Link to="/OnboardExperience"><div className={styles.menuItems}>
             <span className={styles.menuIcon}><i className="fa-solid fa-van-shuttle fa-fw"></i></span>
             <h3 className={styles.bottomlink}> Onboard Experience</h3>
-          </div>
+          </div></Link>
           <div className={styles.menuItems}>
             <span className={styles.menuIcon}><i className="fa-solid fa-book"></i> </span>
             <h3 className={styles.bottomlink}>The EuroLink Story</h3>
@@ -69,10 +70,21 @@ function Navbar() {
             <h3 className={styles.userlink}>Go To Your Dashboard </h3>    
             <span className={styles.userIcon}><i className="fa-solid fa-arrow-right-long"></i></span>
           </div>
-        </div> : <div className={styles.leftmenucontainer}>
-          <h2 className={styles.signuplink}>Planning your next adventure is easier with an account</h2>
-          <p className={styles.accountlink}>sign up</p>
-          <p className={styles.accountlink}>Log in</p>
+        </div> : <div className={styles.rightmenucontainer}>
+          <div>
+            <h2 className={styles.signuplink}>Planning your next adventure is easier with an account</h2>
+          </div>
+          <div>
+            <img className={styles.accountimages} src={accountimage} />
+          </div>
+          <div>
+            
+            <div className={styles.logsignbox}>
+              <p className={styles.accountlink}>sign up</p>
+              <p className={styles.accountlink}>Log in</p>
+            </div>
+          </div>
+          
         </div>}
         
       </div> : null}

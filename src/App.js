@@ -10,6 +10,7 @@ import BookingForm from './components/BookingForm.js'
 import SearchScreen from './components/SearchScreen.js'
 import BookingConfirmation from './components/BookingConfirmation.js'
 import YourBookings from './components/YourBookings.js'
+import OnboardExperience from './components/Informationpages.js/OnboardExperience.js'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/SearchScreen" element={<SearchScreen />} />
         <Route path="/BookingConfirmed" element={<BookingConfirmation />} />
         <Route path="/YourBookings" element={<YourBookings/>} />
+        <Route path="/OnboardExperience" element={<OnboardExperience />} />
       </Routes>
     </Router>
   )
