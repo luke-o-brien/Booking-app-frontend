@@ -52,34 +52,37 @@ function Login() {
 
   return (
     <div className={styles.page}>
+      <div className={styles.leftSide}>
+      </div>
       <div className={styles.rightSide}>
-        
-        <div>
+        <form className={styles.loginForm}>
           <h2 className={styles.signintitle}>Log in</h2>
-          <form className={styles.loginForm}>
-            <label>Email</label>
-            <input
-              type="text"
-              name={'email'} 
-              value={formData.email} 
-              onChange={handleChange}>
-            </input>
-            <label>password</label>
-            <input
-              type="password"
-              name={'password'}
-              value={formData.password}
-              onChange={handleChange}>
-            </input>
-            {errors === "" ? null : <p className={styles.errormsg}>{errors}</p>} 
-            <button onClick={handleSubmit} >Log in</button>
-            <Link to="/register">
-              <button className={styles.registerButton}>Dont have an account? <b className={styles.registerLink}>Sign up</b></button>
-            </Link>
-          </form>
+          <h2 className={styles.signinsubtitle}>Welcome Back</h2>
+            
+          <label>Email</label>
+          <input
+            type="text"
+            name={'email'} 
+            value={formData.email} 
+            onChange={handleChange}>
+          </input>
+          <label>password</label>
+          <input
+            type="password"
+            name={'password'}
+            value={formData.password}
+            onChange={handleChange}>
+          </input>
+          {errors === "" ? null : <p className={styles.errormsg}>{errors}</p>} 
+          <button onClick={handleSubmit} >Log in</button>
+          <Link to="/register">
+            <button className={styles.registerButton}>Dont have an account? <b className={styles.registerLink}>Sign up</b></button>
+          </Link>
+        </form>
+        <div>
+          <button onClick={() => navigate(-1)} className={styles.return}><i className="fa-solid fa-arrow-left-long"></i><p>return to page</p></button>
         </div>
       </div>
-      <div className={styles.leftSide}></div>
     </div>
   )
 }

@@ -10,9 +10,9 @@
 .leftSide {
   margin-top: 0;
   height: 100vh;
-  width: 50%;
-  background-image: linear-gradient(rgb(124, 0, 0), rgb(255, 0, 0)), url("../images/Lux-express-passenger.jpeg");
-  background-position: center;
+  width: 65%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.223), rgba(0, 0, 0, 0.202)), url("../images/dreamstime_xxl_132397927.jpg");
+  background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -25,7 +25,7 @@
   margin-top: 0;
   background: rgb(255,255,255);
   height: 100vh;
-  width: 50%;
+  width: 35%;
 
   .h2 {
     font-size: 60px;
@@ -34,14 +34,14 @@
 }
 
 .loginForm {
-  border: 0.5px lightgray solid;
+  // border: 0.5px lightgray solid;
   width: 90%;
   margin-left: 5%;
-  margin-top: 5vh;
+  margin-top: 10vh;
 
   input {
     width: 90%;
-    height: 40px;
+    height: 45px;
     margin: 0px 5% 50px 5%;
   }
 
@@ -57,11 +57,12 @@
   button {
     margin: 0px 5% 10px 5%;
     width: 90%;
-    background-color:rgb(230, 0, 0);
+    background-color:#00453e;
     border: none;
-    height: 40px;
+    height: 45px;
     cursor: pointer;
     color: white;
+    border-radius: 2px;
   }
 
   .registerButton {
@@ -70,12 +71,65 @@
   }
 
   .registerLink {
-    color: rgb(230, 0, 0);
+    color: #00453e;
   }
 }
 
 .signintitle {
-  margin-left: 5vw;
-  font-size: 40px;
-  height: 20vh;
+  margin-left: 5%;
+  font-size: 50px;
+  font-weight: 700;
+  margin-bottom: 1vh;
+}
+
+.signinsubtitle {
+  margin-left: 5%;
+  font-size: 30px;
+  font-weight: 300;
+  margin-bottom: 5vh;
+}
+
+.return {
+  margin-top: 20vh;
+  margin-bottom: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  border: none;
+  text-decoration: none;
+  background-color: transparent;
+  margin-left: 35%;
+  width: 30%;
+  margin-right: 35%;
+}
+
+.return:hover {
+  cursor: pointer;
+}
+
+
+
+@media (width <= 400px) {
+  .leftSide {
+    width: 0%;
+  }  
+
+  .rightSide {
+    width: 100%;
+  }
+
+  .loginForm {
+    height: 70vh;
+  }
+  .return {
+    margin-top: 10vh;
+    margin-bottom: 10%;
+    justify-content: space-around;
+    font-size: 18px;
+    margin-left: 25%;
+    width: 50%;
+    margin-right: 25%;
+  }
 }

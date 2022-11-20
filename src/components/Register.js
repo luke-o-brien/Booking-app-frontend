@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 import styles from '../styles/Register.module.scss'
+import { Link } from "react-router-dom";
 
 function Register() {
   
@@ -38,15 +39,15 @@ function Register() {
   return (
     <>
       <div className={styles.page}>
-        <div className={styles.leftSide}>
-        </div>
         <div className={styles.rightSide}>
-          <h2>Register for an account</h2>
           <form className={styles.loginForm} >
+            <h2 className={styles.signintitle}>Register</h2>
+            <h2 className={styles.signinsubtitle}>Create an account for the most convienent experience</h2>
             <label>Name</label>
             <input
               type="text"
               name={'name'} 
+              className={styles.registerinput}
               value={formData.name} 
               onChange={handleChange}
             ></input>
@@ -54,6 +55,7 @@ function Register() {
             <input 
               type="text"
               name={'email'}
+              className={styles.registerinput}
               value={formData.email} 
               onChange={handleChange}>
             </input>
@@ -62,17 +64,27 @@ function Register() {
               type="text"
               name={'password'}
               value={formData.password} 
+              className={styles.registerinput}
               onChange={handleChange}>
             </input>
             <label>Password confirmation</label>
             <input 
               type="text"
               name={'passwordConfirmation'}
+              className={styles.registerinput}
               value={formData.passwordConfirmation} 
               onChange={handleChange}>
             </input>
             <button onClick={handleSubmit}>Register</button>
+            <Link to="/login">
+              <button className={styles.registerButton}>Have an account? <b className={styles.registerLink}>Log in</b></button>
+            </Link>
           </form>
+          <div>
+            <button onClick={() => navigate(-1)} className={styles.return}><i className="fa-solid fa-arrow-left-long"></i><p>return to page</p></button>
+          </div>
+        </div>
+        <div className={styles.leftSide}>
         </div>
       </div>
     </>

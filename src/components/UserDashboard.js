@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/UserDashboard.module.scss"
-
+import Navbar from "../components/Navbar.js"
 function UserDashboard() {
 
   const user = localStorage.getItem('name')
 
   return (
     <>
+      <Navbar />
       <div>
         <h1>Hi {user.charAt(0).toUpperCase() + user.slice(1).toLowerCase()}</h1>
         <h3>welcome to your dashboard</h3>
