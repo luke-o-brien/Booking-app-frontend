@@ -279,3 +279,27 @@
   justify-self: flex-end;
   padding-top: 3px;
 }
+
+
+// L o g g e d .  i n .  b u t t o n s   
+
+.loggedinbutton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: 20px;
+  padding: 5px 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  color: black;
+  transition: 1s ease;
+}
+
+.loggedIncontainer {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  height: fit-content;
+  background-color: purple;
+}

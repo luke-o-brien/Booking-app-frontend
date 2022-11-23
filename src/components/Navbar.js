@@ -8,6 +8,7 @@ import accountimage from "../images/dreamstime_xxl_154591729.jpg"
 
 function Navbar() {
   const [hamburgerMenu , setHamburgerMenu] = React.useState(false)
+  const [loggedInMenu, setLoggedInMenu] = React.useState(false)
   const loggedIn  = getLoggedInUserId()
   console.log(loggedIn)
   
@@ -16,13 +17,15 @@ function Navbar() {
     setHamburgerMenu(!hamburgerMenu)
   }
 
-  // function logout() {
-  //   console.log("logout")
-  //   localStorage.removeItem("token");
-  //   localStorage.removeItem("name");
-  //   localStorage.removeItem("_id");
-  //   getLoggedInUserId()
-  // }
+
+
+  function logout() {
+    console.log("logout")
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    localStorage.removeItem("_id");
+    getLoggedInUserId()
+  }
 
   // function loggedUser() {
   //   const login = getLoggedInUserId()
@@ -35,7 +38,18 @@ function Navbar() {
           <div className={ hamburgerMenu ? `${styles.fullmenulogo}` : `${styles.logo}`}>EuroLink</div>
         </div>
         <div className={styles.rightitems}>
-          { loggedIn ? <Link to="/dashboard" className={ hamburgerMenu ? `${styles.fullmenubuttons}` : `${styles.buttons}`} ><p className={styles.buttontext}>{`Dashboard`}</p><i className="fa-solid fa-user"></i></Link> : <Link to="/Login" className={ hamburgerMenu ? `${styles.fullmenubuttons}` : `${styles.buttons}`} ><p className={styles.buttontext}>Log In</p><i className="fa-regular fa-user"></i></Link>}
+          { loggedIn ? 
+            <div className={ hamburgerMenu ? `${styles.fullmenubuttons}` : `${styles.loggedinbutton }`} onClick={() => setLoggedInMenu(!loggedInMenu)} >
+              <p className={styles.buttontext}>{`Your Account`}</p><i className="fa-solid fa-user"></i>
+            </div>
+            : 
+            <Link to="/Login" className={ hamburgerMenu ? `${styles.fullmenubuttons}` : `${styles.buttons}`} >
+              <p className={styles.buttontext}>Log In</p><i className="fa-regular fa-user"></i>
+            </Link>}
+          { loggedIn && loggedInMenu ? <div className={styles.loggedIncontainer}>
+            <Link to="/dashboard" >Dashboard</Link>
+            <button onClick={logout}>Log Out</button>
+          </div> : null}
           { hamburgerMenu ? <div className={styles.fullmenubuttons} onClick={handleClick}><p className={styles.buttontext}>Close</p> <i className="fa-solid fa-x"></i></div> : <div className={ hamburgerMenu ? `${styles.fullmenubuttons}` : `${styles.buttons}`} onClick={handleClick}><p className={styles.buttontext}>Menu</p><i className="fa-solid fa-bars"></i></div>}
         </div>
       </div>

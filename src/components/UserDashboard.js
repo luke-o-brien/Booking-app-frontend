@@ -9,11 +9,11 @@ function UserDashboard() {
   return (
     <>
       <Navbar />
-      <div>
-        <h1>Hi {user.charAt(0).toUpperCase() + user.slice(1).toLowerCase()}</h1>
-        <h3>welcome to your dashboard</h3>
+      <div className={styles.headingcontainer}>
+        <h1 className={styles.welcomemessage}>Hi {user.charAt(0).toUpperCase() + user.slice(1).toLowerCase()}</h1>
+        <h3 className={styles.subwelcome}>welcome to your dashboard</h3>
       </div>
-      <div>
+      <div className={styles.linkContainer}>
         <Link to='/YourBookings'>
           <button className={styles.optionButton}>Your Bookings</button>
         </Link>
