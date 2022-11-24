@@ -34,7 +34,7 @@ function Login() {
       localStorage.setItem('_id', data._id)
       console.log(data.token)
       console.log(data)
-      navigate('/dashboard') 
+      navigate(-1) 
     } catch (err) {
       console.log(err)
       if (err.response.data.message === "Email or password is Incorrect try again!") {

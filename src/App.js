@@ -11,6 +11,8 @@ import SearchScreen from './components/SearchScreen.js'
 import BookingConfirmation from './components/BookingConfirmation.js'
 import YourBookings from './components/YourBookings.js'
 import OnboardExperience from './components/Informationpages.js/OnboardExperience.js'
+import EuroLinkStory from './components/Informationpages.js/EurolinkStory.js'
+import ContactUs from './components/Informationpages.js/ContactUs.js'
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/BookingConfirmed" element={<BookingConfirmation />} />
         <Route path="/YourBookings" element={<YourBookings/>} />
         <Route path="/OnboardExperience" element={<OnboardExperience />} />
+        <Route path="/OurStory" element={<EuroLinkStory />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
     </Router>
   )

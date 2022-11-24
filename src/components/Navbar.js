@@ -1,15 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from '../styles/Navbar.module.scss'
-// import { getLoggedInUserId } from "../lib/auth.js";
 import { getLoggedInUserId } from "../lib/auth";
 import accountimage from "../images/dreamstime_xxl_154591729.jpg"
+
 
 function Navbar() {
   const [hamburgerMenu , setHamburgerMenu] = React.useState(false)
   const [loggedInMenu, setLoggedInMenu] = React.useState(false)
+  const [loggedInUser, setLoggedInUser] = React.useState(getLoggedInUserId)
   const loggedIn  = getLoggedInUserId()
+  const location = useLocation()
+  const navigate = useNavigate()
+  console.log(location)
   console.log(loggedIn)
   
   
@@ -24,7 +29,10 @@ function Navbar() {
     localStorage.removeItem("token");
     localStorage.removeItem("name");
     localStorage.removeItem("_id");
-    getLoggedInUserId()
+    setLoggedInUser(getLoggedInUserId())
+    if (location.pathname === "/dashboard") {
+      navigate("/")
+    }
   }
 
   // function loggedUser() {
@@ -35,10 +43,10 @@ function Navbar() {
     <div className={ hamburgerMenu ? `${styles.fullmenu}` : `${styles.topnav}`}>
       <div className={ hamburgerMenu ? `${styles.fullmenutopdiv}` : `${styles.topnavtopdiv}`}>
         <div className={styles.leftitems}>
-          <div className={ hamburgerMenu ? `${styles.fullmenulogo}` : `${styles.logo}`}>EuroLink</div>
+          <Link to="/"><div className={ hamburgerMenu ? `${styles.fullmenulogo}` : `${styles.logo}`}>EuroLink</div></Link>
         </div>
         <div className={styles.rightitems}>
-          { loggedIn ? 
+          { loggedInUser ? 
             <div className={ hamburgerMenu ? `${styles.fullmenubuttons}` : `${styles.loggedinbutton }`} onClick={() => setLoggedInMenu(!loggedInMenu)} >
               <p className={styles.buttontext}>{`Your Account`}</p><i className="fa-solid fa-user"></i>
             </div>
@@ -59,25 +67,25 @@ function Navbar() {
             <span className={styles.menuIcon}><i className="fa-solid fa-van-shuttle fa-fw"></i></span>
             <h3 className={styles.bottomlink}> Onboard Experience</h3>
           </div></Link>
-          <div className={styles.menuItems}>
+          <Link to="/OurStory"><div className={styles.menuItems}>
             <span className={styles.menuIcon}><i className="fa-solid fa-book"></i> </span>
             <h3 className={styles.bottomlink}>The EuroLink Story</h3>
-          </div>
-          <div className={styles.menuItems}>
+          </div></Link>
+          <Link to="/contact"><div className={styles.menuItems}>
             <span className={styles.menuIcon}><i className="fa-solid fa-headset"></i> </span>
             <h3 className={styles.bottomlink}>Contact Us</h3>
-          </div>
+          </div></Link>
         </div>
         <div className={styles.hrcontainer}>
           <div className={styles.hr}></div>
         </div>
-        { loggedIn ? <div className={styles.leftmenucontainer}>
+        { loggedInUser ? <div className={styles.leftmenucontainer}>
           <div className={styles.welcomecontainer}>
             <h2>Hi Luke</h2>
             <h3>Welcome back!</h3>
           </div>
           <div className={styles.userlinks}>
-            <h3 className={styles.userlink}>Go To Your Dashboard </h3>    
+            <Link to="/dashboard"><h3 className={styles.userlink}>Go To Your Dashboard </h3></Link>  
             <span className={styles.userIcon}><i className="fa-solid fa-arrow-right-long"></i></span>
           </div>
         </div> : <div className={styles.rightmenucontainer}>
@@ -90,8 +98,8 @@ function Navbar() {
           <div>
             
             <div className={styles.logsignbox}>
-              <p className={styles.accountlink}>sign up</p>
-              <p className={styles.accountlink}>Log in</p>
+              <Link to="/register" className={styles.accountlink}><p>sign up</p></Link>
+              <Link to="/Login" className={styles.accountlink}><p>Log In</p></Link>
             </div>
           </div>
           
