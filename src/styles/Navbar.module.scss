@@ -300,6 +300,34 @@
   display: flex;
   flex-direction: column;
   z-index: 2;
-  height: fit-content;
-  background-color: purple;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 1vw;
+  position: absolute;
+  margin-left: 79vw;
+  margin-top: 7.5vh;
+  width: 20vw;
+  background-color: white;
+  border-radius: 0.75rem;
+  border: 0.5px grey solid;
+}
+
+.loggedInContent {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 0.75rem;
+  .logoutbutton {
+    font-size: 18px;
+    background-color: #00453e;
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 10px;
+    width: 70%;
+    margin-left: 15%;
+  }
+
 }

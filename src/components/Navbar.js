@@ -31,7 +31,7 @@ function Navbar() {
   //   const login = getLoggedInUserId()
   //   setLoggedIn(login)
   // }
-  return (
+  return ( <>
     <div className={ hamburgerMenu ? `${styles.fullmenu}` : `${styles.topnav}`}>
       <div className={ hamburgerMenu ? `${styles.fullmenutopdiv}` : `${styles.topnavtopdiv}`}>
         <div className={styles.leftitems}>
@@ -46,10 +46,6 @@ function Navbar() {
             <Link to="/Login" className={ hamburgerMenu ? `${styles.fullmenubuttons}` : `${styles.buttons}`} >
               <p className={styles.buttontext}>Log In</p><i className="fa-regular fa-user"></i>
             </Link>}
-          { loggedIn && loggedInMenu ? <div className={styles.loggedIncontainer}>
-            <Link to="/dashboard" >Dashboard</Link>
-            <button onClick={logout}>Log Out</button>
-          </div> : null}
           { hamburgerMenu ? <div className={styles.fullmenubuttons} onClick={handleClick}><p className={styles.buttontext}>Close</p> <i className="fa-solid fa-x"></i></div> : <div className={ hamburgerMenu ? `${styles.fullmenubuttons}` : `${styles.buttons}`} onClick={handleClick}><p className={styles.buttontext}>Menu</p><i className="fa-solid fa-bars"></i></div>}
         </div>
       </div>
@@ -103,6 +99,13 @@ function Navbar() {
         
       </div> : null}
     </div>
+    { loggedIn && loggedInMenu ? <div className={styles.loggedIncontainer}>
+      <div className={styles.loggedInContent}>
+        <Link to="/dashboard" >Dashboard</Link>
+        <button  className={styles.logoutbutton} onClick={logout}>Log Out</button>
+      </div>
+    </div> : null}
+  </>
   )
 }
 
