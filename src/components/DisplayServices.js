@@ -6,6 +6,8 @@ import { useLocation } from "react-router-dom";
 function DisplayServices() {
   
   const [services, setServices] = React.useState(undefined)
+  const [fullinfo, setFullInfo] = React.useState(false)
+  const [activeIndex, setActiveIndex] = React.useState(null)
   
   const { state } = useLocation()
   console.log(state)
@@ -26,7 +28,14 @@ function DisplayServices() {
       console.log(json)
     }
     getData()
-  }, [])
+  } , [])
+
+  function handleClick(index) {
+    console.log(index)
+    setActiveIndex(index)
+    setFullInfo(!fullinfo)
+    
+  }
 
   return ( <>
     <div className={styles.titlecontainer}>
@@ -36,7 +45,7 @@ function DisplayServices() {
     </div>
     {services ? <>
       {services.map((service, index) => {
-        return <div key={index} className={styles.servicecontainer}>
+        return <><div key={index} className={styles.servicecontainer}>
           <div className={styles.servicetop}>
             <div className={styles.servicetopdetails}>
               <h3 className={styles.time}>{service.DepartureTime} - {service.ArrivalTime}</h3>
@@ -50,18 +59,45 @@ function DisplayServices() {
             <h2>{service.operator} {service.serviceNumber}</h2>
           </div>
           <div className={styles.facilities}>
-            { service.facilities.wc ? <i className="fa-solid fa-restroom fa-lg"></i> : null}
-            { service.facilities.aircondition ? <i className="fa-regular fa-snowflake fa-lg"></i> : null}
-            { service.facilities.poweroutlet ? <i className="fa-solid fa-plug-circle-bolt fa-lg"></i> : null}
-            { service.facilities.accesible ?  <i className="fa-solid fa-wheelchair fa-lg"></i> : null}
-            { service.facilities.wifi ? <i className="fa-solid fa-wifi fa-lg"></i> : null}
+            { service.facilities.wc ? <div className={styles.facilitiesIcon}><i className="fa-solid fa-restroom"></i></div> : null}
+            { service.facilities.aircondition ? <div className={styles.facilitiesIcon}><i className="fa-regular fa-snowflake"></i></div> : null}
+            { service.facilities.poweroutlet ? <div className={styles.facilitiesIcon}><i className="fa-solid fa-plug-circle-bolt"></i></div> : null}
+            { service.facilities.accesible ?  <div className={styles.facilitiesIcon}><i className="fa-solid fa-wheelchair"></i></div> : null}
+            { service.facilities.wifi ? <div className={styles.facilitiesIcon}><i className="fa-solid fa-wifi"></i></div> : null}
           
           </div>
           <div className={styles.servicefurtherinfo}>
-            <a>full details</a>
+            <a onClick={() => handleClick(index)}>full details</a>
             <Link to={`/bookingform/${service._id}`}> <button className={styles.bookbutton}>Buy Tickets</button></Link> 
           </div>
-        </div> 
+        </div>
+        {(activeIndex === index) && fullinfo ? <div className={styles.detailsModel}>
+          <div className={styles.modaltopbar}>
+            <h2 className={styles.modaltitle}>Service Details</h2>
+            <a onClick={() => handleClick(index)}>close</a>
+          </div>
+          <div>
+            <div>
+              <p>Service Number: {service.serviceNumber}</p>
+              <p>operator: {service.operator}</p>
+              <p>Date: {displayDate}</p>
+              <p>From: {service.Origin}</p>
+              <p>Departure Time: {service.DepartureTime}</p>
+              <p>To: {service.Destination}</p>
+              <p>ArrivalTime: {service.ArrivalTime}</p>
+              <p>Type: {service.BusType}</p>
+            </div>
+            <div className={styles.facilitiesModel}>
+              { service.facilities.wc ? <div className={styles.facilitiesIconModel}><i className="fa-solid fa-restroom"></i><p>WC</p></div> : null}
+              { service.facilities.aircondition ? <div className={styles.facilitiesIconModel}><i className="fa-regular fa-snowflake"></i><p>Air Conditioning</p></div> : null}
+              { service.facilities.poweroutlet ? <div className={styles.facilitiesIconModel}><i className="fa-solid fa-plug-circle-bolt"></i><p>Plug sockets(UK)</p></div> : null}
+              { service.facilities.accesible ?  <div className={styles.facilitiesIconModel}><i className="fa-solid fa-wheelchair"></i><p>Accesible</p></div> : null}
+              { service.facilities.wifi ? <div className={styles.facilitiesIconModel}><i className="fa-solid fa-wifi"></i><p>Free WIFI</p></div> : null}
+          
+            </div>
+          </div>
+        </div> : null}
+        </>
       })} <small>all times are local</small></> : <p>waiting on data</p>}
   </> )
 }
