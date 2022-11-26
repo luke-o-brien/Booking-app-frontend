@@ -3,15 +3,20 @@ import styles from "../styles/BookingForm.module.scss"
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
+import { getLoggedInUserId } from "../lib/auth";
+import Navbar from "./Navbar.js"
+import LoginCheckout from "./LoginCheckout.js"
 
 
 function BookingForm() {
 
   const { serviceId } = useParams()
   const navigate = useNavigate()
+  const loggedInUser = getLoggedInUserId()
   
   const [selectedService, setSelectedService] = React.useState(undefined)
   const [termsAgree, setTermsAgree] = React.useState(false)
+  const [showForm, setShowForm] = React.useState(false)
   // const [nationality, setNationality] = React.useState(undefined)
 
   React.useEffect(() => {
@@ -98,7 +103,11 @@ function BookingForm() {
 
   return ( selectedService ?
     <div>
-      <div>
+      <Navbar />
+      
+      {/*  S E R V I C E   I N F O R M A T I O N */}
+
+      <div className={styles.pagecontent}>
         <div className={styles.servicebanner}>
           <div className={styles.servicedetailscontainer}>
             <h3 className={styles.serviceinfo}>Service Information</h3>
@@ -140,7 +149,19 @@ function BookingForm() {
           </div>
         </div>
       </div>
-      <div className={styles.bookingForm}>
+      
+      {/*  L O G   I N   /   S I G N   U P   /   G U E S T  */}
+      
+      { loggedInUser || showForm === true ? null : <div className={styles.logincontainer}>
+        <div>
+          < LoginCheckout />
+          <button onClick={() => setShowForm(true) }>Continue as guest</button>
+        </div>
+      </div> }
+
+      {/* { B O O K I N G   F O R M } */}
+
+      { loggedInUser || showForm ? <div className={styles.bookingForm}>
         <h2>Purchase Tickets</h2>
         <div className={styles.formmain}>
           <form>
@@ -199,7 +220,7 @@ function BookingForm() {
             <button onClick={bookservice}>Book Now</button>
           </form>
         </div>
-      </div>
+      </div> : null}
     </div> : <p>waiting for data</p>
     
   )

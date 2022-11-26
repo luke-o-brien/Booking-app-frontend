@@ -75,7 +75,6 @@
 .facilitiesIcon {
   height: auto;
   background-color: transparent;
-  z-index: 3;
   font-size: 24px;
   margin-right: 20px;
 }
@@ -112,11 +111,12 @@
 .detailsModel {
   z-index: 4;
   top: 0;
-  background-color: pink;
+  background-color: white;
   position: absolute;
   margin: 10vh 10vw;
   width: 80vw;
   height: 80vh;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
 .modaltopbar {
@@ -137,7 +137,7 @@
   flex-direction: row;
   height: auto;
   background-color: transparent;
-  z-index: 3;
+  z-index: 4;
   font-size: 24px;
   margin-right: 20px;
 }
@@ -150,4 +150,32 @@
   margin-bottom: 5px;
   padding: 10px;
   margin-left: 0.5%;
+}
+
+.Busimages {
+  height: 200px;
+  width:300px;
+  object-fit: cover;
+  margin: 5px;
+}
+
+.modalmaincontent {
+  display: flex;
+  flex-direction: row;
+}
+
+.facilitiesandimg {
+  display: flex;
+  flex-direction: column-reverse;
+  
+}
+
+.modal {
+  top: 0;
+  z-index: 3;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  //background-color: rgb(0,0,0);
+  background-color: rgba(0, 0, 0, 0.066);
 }
