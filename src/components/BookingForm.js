@@ -7,7 +7,6 @@ import { getLoggedInUserId } from "../lib/auth";
 import Navbar from "./Navbar.js"
 import LoginCheckout from "./LoginCheckout.js"
 
-
 function BookingForm() {
 
   const { serviceId } = useParams()
@@ -17,6 +16,7 @@ function BookingForm() {
   const [selectedService, setSelectedService] = React.useState(undefined)
   const [termsAgree, setTermsAgree] = React.useState(false)
   const [showForm, setShowForm] = React.useState(false)
+  const [checkerror, setcheckerror] = React.useState(false)
   // const [nationality, setNationality] = React.useState(undefined)
 
   React.useEffect(() => {
@@ -49,7 +49,12 @@ function BookingForm() {
   }
 
   function handlecheck() {
-    setTermsAgree(!termsAgree)
+    if (checkerror) {
+      setTermsAgree(!termsAgree)
+      setcheckerror(false)
+    } else {
+      setTermsAgree(!termsAgree)
+    }
   }
   async function bookservice(event) {
     event.preventDefault();
@@ -97,6 +102,7 @@ function BookingForm() {
     // );
     } else {
       console.log("not checked")
+      setcheckerror(true)
     }
   }
   
@@ -153,9 +159,15 @@ function BookingForm() {
       {/*  L O G   I N   /   S I G N   U P   /   G U E S T  */}
       
       { loggedInUser || showForm === true ? null : <div className={styles.logincontainer}>
-        <div>
-          < LoginCheckout />
-          <button onClick={() => setShowForm(true) }>Continue as guest</button>
+        < LoginCheckout />
+        <div className={styles.verticalRule}></div>
+        <div className={styles.guestside}>
+          <div className={styles.guestdiv}>
+            <p className={styles.or}>or</p>
+          </div>
+          <div className={styles.guestdiv}>
+            <button className={styles.guestbutton} onClick={() => setShowForm(true) }>Continue as guest</button>
+          </div>
         </div>
       </div> }
 
@@ -216,6 +228,7 @@ function BookingForm() {
             <div className={styles.TC}>
               <label>I agree to the <a>terms and conditions</a></label>
               <input type="checkbox" className={styles.checkbox} onChange={handlecheck}></input>
+              { checkerror ? <small className={styles.errors}><b>You must agree to the terms and conditions</b></small> : null}
             </div>
             <button onClick={bookservice}>Book Now</button>
           </form>

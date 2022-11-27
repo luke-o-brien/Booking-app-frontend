@@ -1,14 +1,14 @@
 .page {
-  height: 100vh;
+  height: 100%;
   margin: 0;
-  width: 100%;
+  width: 60vw;
 }
 
 
 .rightSide {
   margin-top: 0;
   background: rgb(255,255,255);
-  height: 100vh;
+  height: 100%;
   width: 100%;
 
   .h2 {
@@ -51,6 +51,9 @@
   .registerButton {
     background-color: transparent;
     color: black;
+    font-size: 30px;
+    margin-top: 5vh;
+    height: 50px;
   }
 
   .registerLink {
