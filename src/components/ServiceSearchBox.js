@@ -1,11 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/ServiceSearchBox.module.scss";
-
+import { getLoggedInUserId } from "../lib/auth";
 function SearchScreen() {
 
   const navigate = useNavigate()
-
+  const loggedIn  = getLoggedInUserId()
+  const name = localStorage.getItem('name');
+  console.log(name)
+  const today = new Date(),
+    hours = today.getHours()
   const [formData, setFormData] = React.useState({
     origin: "",
     destination: "",
@@ -39,6 +43,14 @@ function SearchScreen() {
   }
   return ( <>
     <div className={styles.buytickets}>
+      {
+        loggedIn ? <h1 className={styles.title}>Hello {name.split(" ").slice(0,1)}!</h1> :
+          (hours >= 20 || hours < 4) ? <h1 className={styles.title}>Hello Night Owl</h1> : 
+            (hours >= 17 && hours < 20) ? <h1 className={styles.title}>Good Evening</h1> :
+              (hours >= 12 && hours < 19) ? <h1 className={styles.title}>Good Afternoon</h1> : 
+                (hours >= 7 && hours < 12) ? <h1 className={styles.title}>Good Morning</h1> : 
+                  (hours >= 4 && hours < 7) ? <h1 className={styles.title}>Early Bird gets the Great deals</h1> : null
+      }
       <h1 className={styles.title}>Where are you Going?</h1>
       <form className={styles.form}>
         <div className={styles.origindestcontainer}>

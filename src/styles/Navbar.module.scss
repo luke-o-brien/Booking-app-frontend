@@ -7,8 +7,9 @@
   padding-bottom: 5px;
   transition: 1s ease;
   height: 7.5vh;
-  position: absolute;
+  position: fixed;
   width: 100vw;
+  z-index: 3;
 }
 
 .topnavtopdiv {
@@ -68,7 +69,7 @@
   padding: 5px 10px;
   font-size: 20px;
   border-radius: 5px;
-  color: black;
+  color: rgba(0, 0, 0, 0.913);
   transition: 1s ease;
 }
 
@@ -296,6 +297,10 @@
   transition: 1s ease;
 }
 
+.loggedinbutton:hover {
+  cursor: pointer;
+}
+
 .loggedIncontainer {
   display: flex;
   flex-direction: column;
@@ -321,7 +326,7 @@
   border-radius: 0.75rem;
   .logoutbutton {
     font-size: 18px;
-    background-color: #00453e;
+    background-color: rgb(0, 71, 64);
     color: white;
     border: none;
     border-radius: 0.75rem;
