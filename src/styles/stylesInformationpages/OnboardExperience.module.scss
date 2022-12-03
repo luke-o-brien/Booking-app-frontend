@@ -1,0 +1,129 @@
+.TopImage {
+  background:linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("/images/dreamstime_xxl_194766913.jpg");
+  height: 60vh;
+  width: 100%;
+  margin-top: 7.5vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.herotext {
+  font-size: 80px;
+  font-weight: 600;
+  margin-left: 2vw;
+}
+
+
+.tagline {
+  background-color: rgb(255, 255, 255);
+  font-size: 24px;
+  padding: 10px 0px;
+
+  h3 {
+    margin-left: 2%;
+    color: black;
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 2%;
+  }
+}
+.facilitiesdiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100vw;
+  margin-top: 20px;
+  background-color: rgb(247, 247, 247);
+  //box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
+
+.facilitiesicondiv {
+  font-size: 60px;
+  padding: 20px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.facilitiesicondivactive {
+  border-bottom: 10px green solid;
+  font-size: 60px;
+  padding:20px 20px 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.facilitiesicondiv:hover {
+  padding-bottom: 10px;
+  border-bottom: 10px green solid;
+}
+.facilitiesicondiv::after {
+  background-color: aqua;
+}
+
+.bustype {
+  display: flex;
+  flex-direction: row;
+}
+
+.imageside {
+  width: 50%;
+}
+
+.infoside {
+  width: 50%;
+
+  h3 {
+    margin-left: 2%;
+    color: black;
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 2%;
+  }
+}
+
+
+.facilitiestitle {
+  font-size: 50px;
+  font-weight: bold;
+  color: black;
+  margin-left: 1vw;
+}
+
+.facilitiestagline {
+  font-size: 18px;
+  margin-left: 1vw;
+}
+.renderfacilities {
+  display: flex;
+  flex-direction: row;
+}
+
+.facilitiesblurb {
+  width: 50%;
+}
+
+.facilitiesimage {
+  width: 50%;
+  height: 70vh;
+  object-fit: cover;
+}

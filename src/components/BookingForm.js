@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom"
 import { getLoggedInUserId } from "../lib/auth";
 import Navbar from "./Navbar.js"
 import LoginCheckout from "./LoginCheckout.js"
+import businteriorimg1 from "../images/lux-express-salon-1024x660.jpeg"
+import businteriorimg2 from "../images/D9egR_gW4AETS-T.jpeg"
 
 function BookingForm() {
 
@@ -13,7 +15,7 @@ function BookingForm() {
   const navigate = useNavigate()
   const loggedInUser = getLoggedInUserId()
   
-  const [selectedService, setSelectedService] = React.useState(undefined)
+  const [service, setservice] = React.useState(undefined)
   const [termsAgree, setTermsAgree] = React.useState(false)
   const [showForm, setShowForm] = React.useState(false)
   const [checkerror, setcheckerror] = React.useState(false)
@@ -23,7 +25,7 @@ function BookingForm() {
     const getData = async () => {
       const res = await fetch(`/api/services/${serviceId}`)
       const json = await res.json()
-      setSelectedService(json)
+      setservice(json)
     }
     getData()
   }, [serviceId])
@@ -66,7 +68,7 @@ function BookingForm() {
       } catch (err) {
         console.log(err.response.data)
       }
-      const availableSeats = selectedService.SeatNumber
+      const availableSeats = service.SeatNumber
       if (availableSeats === 1) {
         console.log("sold out") 
       } else {
@@ -95,7 +97,7 @@ function BookingForm() {
     //   From: "",
     //   Subject: "Booking Confirmation",
     //   Body: ` <h1 style="color:red;">Booking Confirmed</h1>
-    //   <p>You're off to ${selectedService.Destination}</p>
+    //   <p>You're off to ${service.Destination}</p>
     //   <h2>Journey details</h2>`,
     // }).then(
     //   message => alert(message)
@@ -107,7 +109,7 @@ function BookingForm() {
   }
   
 
-  return ( selectedService ?
+  return ( service ?
     <div>
       <Navbar />
       
@@ -119,14 +121,14 @@ function BookingForm() {
             <h3 className={styles.serviceinfo}>Service Information</h3>
             <div className={styles.serviceContainer}>
               <div className={styles.operatorService}>
-                <h4><b>{selectedService.operator}</b></h4>
-                <h4>{selectedService.serviceNumber}</h4>
-                <h4>{selectedService.DepartureDate}</h4>
-                <h5 className={styles.overnighticon}>{selectedService.BusType} <span style={{ color: "#ffff80" }}><i className="fa-solid fa-moon yellow"></i></span></h5>
+                <h4><b>{service.operator}</b></h4>
+                <h4>{service.serviceNumber}</h4>
+                <h4>{service.DepartureDate}</h4>
+                <h5 className={styles.overnighticon}>{service.BusType} <span style={{ color: "#ffff80" }}><i className="fa-solid fa-moon yellow"></i></span></h5>
               </div>
               <div className={styles.servicedetails}>
                 <div className={styles.OriginDest}>
-                  <h4>{selectedService.Origin} to {selectedService.Destination} </h4>
+                  <h4>{service.Origin} to {service.Destination} </h4>
                 </div>
                 <div className={styles.time}>
                 
@@ -135,7 +137,7 @@ function BookingForm() {
                 <div className={styles.timings}>
                   <div className={styles.timediv}>
                     <h4>Depart</h4>
-                    <h4><b>{selectedService.DepartureTime}</b></h4>
+                    <h4><b>{service.DepartureTime}</b></h4>
                   </div>
                   <div className={styles.timediv}>
                     <h4>{` ------ 8 hours ------ `}</h4>
@@ -143,7 +145,7 @@ function BookingForm() {
                   </div>
                   <div className={styles.timediv}>
                     <h4>Arrive</h4>
-                    <h4><b>{selectedService.ArrivalTime}</b></h4>
+                    <h4><b>{service.ArrivalTime}</b></h4>
                   </div>
                 </div>
               </div>
@@ -155,6 +157,40 @@ function BookingForm() {
           </div>
         </div>
       </div>
+      {(activeIndex === index) && fullinfo ? <div className={styles.modal}>
+        <div className={styles.detailsModel}>
+          <div className={styles.modaltopbar}>
+            <h2 className={styles.modaltitle}>Service Details</h2>
+            <a onClick={() => handleClick(index)}>close</a>
+          </div>
+
+          <div className={styles.modalmaincontent}>
+            <div>
+              <p>Service Number: {service.serviceNumber}</p>
+              <p>operator: {service.operator}</p>
+              <p>Date: {service.displayDate}</p>
+              <p>From: {service.Origin}</p>
+              <p>Departure Time: {service.DepartureTime}</p>
+              <p>To: {service.Destination}</p>
+              <p>ArrivalTime: {service.ArrivalTime}</p>
+              <p>Type: {service.BusType}</p>
+            </div>
+            <div className={styles.facilitiesandimg}>
+              <div className={styles.facilitiesModel}>
+                { service.facilities.wc ? <div className={styles.facilitiesIconModel}><i className="fa-solid fa-restroom"></i><p>WC</p></div> : null}
+                { service.facilities.aircondition ? <div className={styles.facilitiesIconModel}><i className="fa-regular fa-snowflake"></i><p>Air Conditioning</p></div> : null}
+                { service.facilities.poweroutlet ? <div className={styles.facilitiesIconModel}><i className="fa-solid fa-plug-circle-bolt"></i><p>Plug sockets(UK)</p></div> : null}
+                { service.facilities.accesible ?  <div className={styles.facilitiesIconModel}><i className="fa-solid fa-wheelchair"></i><p>Accesible</p></div> : null}
+                { service.facilities.wifi ? <div className={styles.facilitiesIconModel}><i className="fa-solid fa-wifi"></i><p>Free WIFI</p></div> : null}
+              </div>
+              <div>
+                <img className={styles.Busimages} src={businteriorimg1} />
+                <img className={styles.Busimages} src={businteriorimg2} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> : null}
       
       {/*  L O G   I N   /   S I G N   U P   /   G U E S T  */}
       

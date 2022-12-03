@@ -109,7 +109,7 @@ function Navbar() {
     </div>
     { loggedIn && loggedInMenu ? <div className={styles.loggedIncontainer}>
       <div className={styles.loggedInContent}>
-        <Link to="/dashboard" >Dashboard</Link>
+        <Link to="/dashboard" className={styles.loggedindashbutton} >Dashboard</Link>
         <button  className={styles.logoutbutton} onClick={logout}>Log Out</button>
       </div>
     </div> : null}
