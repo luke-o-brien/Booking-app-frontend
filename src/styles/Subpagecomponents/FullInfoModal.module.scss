@@ -21,6 +21,7 @@
   width: 80vw;
   height: 80vh;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  overflow: scroll;
 }
 
 
@@ -76,13 +77,15 @@
 
 .topdetails {
   .date {
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 300;
+    
   }
 
   .operator {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 600;
+    margin-left: 0.5%;
   }
 }
 
@@ -94,9 +97,8 @@
 }
 .OriginDest {
   margin-left: 0%;
-  margin-top: 30px;
-  width: 30%;
-  margin-right: 5%;
+  margin-top: 20px;
+  width: 32%;
 
   
   h5 {
@@ -107,15 +109,28 @@
   p {
     font-size: 18px;
   }
-
-  .duration {
-    padding-left: 10px;
-    padding-right: 10px;
-    text-align: center;
-    border-bottom: 2px grey solid;
-  }
 }
 
+.OriginDestduration {
+  margin-left: 15px;
+  margin-top: 20px;
+  width: 32%;
+  margin-right: 15px;
+}
+
+.duration {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  border-bottom: 2px grey solid;
+}
+
+.serviceno {
+  color: $accent-color;
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 0.5%;
+}
 //? Left Side 
 
 // I M A G E S
@@ -123,12 +138,14 @@
   display: flex;
   flex-direction: column-reverse;
   width: 50%;
+  justify-content: flex-end;
 }
 
 .imagesContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  
 }
 
 // F A C I L I T I E S
@@ -157,10 +174,61 @@
   height: auto;
   background-color: transparent;
   font-size: 24px;
-  margin-top: 5px;
+  margin-top: 10px;
 
 }
 
 .icon {
   width: 15%;
+}
+
+
+// stops
+
+.stoptitle {
+  margin-top: 15px;
+  font-size: 20px;
+  text-decoration: underline;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+} 
+
+.stoptitle:hover {
+  cursor: pointer;
+} 
+
+.stopcontainer {
+  margin-top: 10px;
+  border-left: 5px solid $accent-color;
+}
+
+.stopdiv {
+  margin-bottom: 20px;
+  margin-top: 1px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.stoptimediv {
+  margin-right: 20px;
+}
+
+.stopcity {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.stopstop {
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.stoptime {
+  font-size: 24px;
+  font-weight: 600;
+
 }

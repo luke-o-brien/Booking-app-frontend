@@ -1,10 +1,11 @@
-
 import React from "react"
 import styles from "../../styles/Subpagecomponents/FullInfoModal.module.scss"
 import businteriorimg1 from "../../images/lux-express-salon-1024x660.jpeg"
 import businteriorimg2 from "../../images/D9egR_gW4AETS-T.jpeg"
 
-function fullinfoModal(props) {
+function FullinfoModal(props) {
+
+  const [stops, setstops] = React.useState(false)
 
   const service = props.serviceInfo
   console.log(props.serviceInfo)
@@ -28,22 +29,40 @@ function fullinfoModal(props) {
         <div className={styles.details}>
           <div className={styles.topdetails}>
             <h4 className={styles.date}>{displayDate}</h4>
-            <p className={styles.operator}>{service.operator} - {service.serviceNumber}</p>      
+            <p className={styles.operator}>{service.Origin} to {service.Destination}</p>
+            <p className={styles.serviceno}>{service.operator} - {service.serviceNumber}</p> 
           </div>
+          
           <div className={styles.OriginDestContainer}>
             <div className={styles.OriginDest}>
               <h5>Departure</h5>
-              <p>{service.Origin}</p>
-              <p>{service.DepartureTime}</p>
+              <p>{service.OriginPoint}</p>
+              <p>{service.DepartureTime.slice(0,5)}</p>
             </div>
-            <div className={styles.OriginDest}>
-              <p className={styles.duration}>{service.duration.toString().slice(0,2)} Hours</p>
+            <div className={styles.OriginDestduration}>
+              <p className={styles.duration}>{service.duration.toString().slice(0,1)} Hours</p>
 
             </div>
             <div className={styles.OriginDest}>
               <h5>Arrival</h5>
-              <p>{service.Destination}</p>
-              <p>ArrivalTime: {service.ArrivalTime}</p>
+              <p>{service.DestinationPoint}</p>
+              <p>{service.ArrivalTime.slice(0,5)}</p>
+            </div>
+          </div>
+          <div>
+            <h3 className={styles.stoptitle} onClick={() => setstops(!stops)}>View all stops<i className="fa-solid fa-angle-down"></i></h3>
+            <div className={styles.stopcontainer}>
+              { stops ? <>{service.stoppingPoints.map((stop, index) => {
+                return <div className={styles.stopdiv} key={index}>
+                  <div className={styles.stoptimediv}>
+                    <p className={styles.stoptime}>{stop.time.slice(0,5)}</p>
+                  </div>
+                  <div>
+                    <p className={styles.stopcity}>{stop.city}</p>
+                    <p className={styles.stopstop}>{stop.stop}</p>
+                  </div>
+                </div>
+              })} </> : null }
             </div>
           </div>
         </div>
@@ -54,6 +73,10 @@ function fullinfoModal(props) {
             { service.facilities.poweroutlet ? <div className={styles.facilitiesIconModel}><div className={styles.icon}><i className="fa-solid fa-plug-circle-bolt"></i></div><p>Plug sockets(EU)</p></div> : null}
             { service.facilities.accesible ?  <div className={styles.facilitiesIconModel}><div className={styles.icon}><i className="fa-solid fa-wheelchair"></i></div><p>Wheelchair Accesible</p></div> : null}
             { service.facilities.wifi ? <div className={styles.facilitiesIconModel}><div className={styles.icon}><i className="fa-solid fa-wifi"></i></div><p>Free WIFI</p></div> : null}
+            { service.facilities.tv ? <div className={styles.facilitiesIconModel}><div className={styles.icon}><i className="fa-solid fa-tv"></i></div><p>Entertainment</p></div> : null}
+            { service.facilities.bike ? <div className={styles.facilitiesIconModel}><div className={styles.icon}><i className="fa-solid fa-bicycle"></i></div><p>Bike spaces</p></div> : null}
+            { service.facilities.water ? <div className={styles.facilitiesIconModel}><div className={styles.icon}><i className="fa-solid fa-glass-water"></i></div><p>Free Tap Water</p></div> : null}
+            { service.facilities.emmissions ? <div className={styles.facilitiesIconModel}><div className={styles.icon}><i className="fa-solid fa-leaf"></i></div><p>Low Emission Bus</p></div> : null}
           </div>
           <h3 className={styles.facilitiestitle}>Onboard Facilities</h3>
           <div className={styles.imagesContainer}>
@@ -67,4 +90,4 @@ function fullinfoModal(props) {
   )
 }
 
-export default fullinfoModal
+export default FullinfoModal
