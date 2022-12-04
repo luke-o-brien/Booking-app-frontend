@@ -1,3 +1,5 @@
+@import "../Variables/Variables.scss";
+
 .topnav {
   background-color: white;
   display: flex;
@@ -26,7 +28,7 @@
 
 
 .fullmenu {
-  background-color: #00453e;
+  background-color: $accent-color;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

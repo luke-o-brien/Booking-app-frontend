@@ -1,5 +1,5 @@
-
-  $base-color: #00453e; 
+@import "../../Variables/Variables.scss";
+  
 // M A I N    M O D A L    S T Y L I N G 
 
 .modal {
@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: $base-color ;
+  background-color: $accent-color;
   color: white;
   
   .modaltitle {
