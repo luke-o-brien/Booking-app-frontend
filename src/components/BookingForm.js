@@ -1,26 +1,42 @@
+// React Functions Import 
 import React from "react"
-import styles from "../styles/BookingForm.module.scss"
 import { useParams } from "react-router-dom"
-import axios from 'axios'
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+
+
+// Custom Functions and components Import
 import { getLoggedInUserId } from "../lib/auth";
+import axios from 'axios'
 import Navbar from "./Navbar.js"
 import LoginCheckout from "./LoginCheckout.js"
-import businteriorimg1 from "../images/lux-express-salon-1024x660.jpeg"
-import businteriorimg2 from "../images/D9egR_gW4AETS-T.jpeg"
+import FullInfoModal from "../components/Subpagecomponents/FullInfoModal.js";
+
+
+// Styles and Images Import 
+import styles from "../styles/BookingForm.module.scss"
+//mport businteriorimg1 from "../images/lux-express-salon-1024x660.jpeg"
+//import businteriorimg2 from "../images/D9egR_gW4AETS-T.jpeg"
+
+
 
 function BookingForm() {
 
+  // state and function initialisation
   const { serviceId } = useParams()
   const navigate = useNavigate()
   const loggedInUser = getLoggedInUserId()
   
+  // React States 
   const [service, setservice] = React.useState(undefined)
   const [termsAgree, setTermsAgree] = React.useState(false)
   const [showForm, setShowForm] = React.useState(false)
   const [checkerror, setcheckerror] = React.useState(false)
-  // const [nationality, setNationality] = React.useState(undefined)
+  //? const [nationality, setNationality] = React.useState(undefined)
+  const [fullinfo, setFullInfo] = React.useState(false)
 
+
+  // Get service data and save to state
   React.useEffect(() => {
     const getData = async () => {
       const res = await fetch(`/api/services/${serviceId}`)
@@ -30,6 +46,8 @@ function BookingForm() {
     getData()
   }, [serviceId])
 
+
+  // Formdata and handlechange functions
   const [formData, setFormData] = React.useState({
     serviceId: serviceId,
     firstName: "",
@@ -50,16 +68,15 @@ function BookingForm() {
     })
   }
 
-  function handlecheck() {
-    if (checkerror) {
-      setTermsAgree(!termsAgree)
-      setcheckerror(false)
-    } else {
-      setTermsAgree(!termsAgree)
-    }
+  const updateState = () => {
+    setFullInfo(false)
   }
+
+  //Book Service Function
+  
   async function bookservice(event) {
     event.preventDefault();
+    //!Post form to API
     if (termsAgree === true) {
       try {
         const { data } = await axios.post(`/api/services/${serviceId}/bookings`, formData)
@@ -68,9 +85,10 @@ function BookingForm() {
       } catch (err) {
         console.log(err.response.data)
       }
+      //! Deduct seats from booking object on backend
       const availableSeats = service.SeatNumber
-      if (availableSeats === 1) {
-        console.log("sold out") 
+      if (availableSeats === 0) {
+        console.log("sold out")
       } else {
         const remainingSeats = availableSeats - 1
         console.log(remainingSeats)
@@ -88,7 +106,7 @@ function BookingForm() {
           console.log(err.response.data)
         }
       }
-
+    //! Send Email to Customer with confirmation of key details
     // window.Email.send({
     //   Host: "smtp.elasticemail.com",
     //   Username: "",
@@ -109,11 +127,21 @@ function BookingForm() {
   }
   
 
+  //! T&Cs checked ?
+  function handlecheck() {
+    if (checkerror) {
+      setTermsAgree(!termsAgree)
+      setcheckerror(false)
+    } else {
+      setTermsAgree(!termsAgree)
+    }
+  }
+
   return ( service ?
     <div>
       <Navbar />
-      
-      {/*  S E R V I C E   I N F O R M A T I O N */}
+
+      {/* S E R V I C E   I N F O R M A T I O N */}
 
       <div className={styles.pagecontent}>
         <div className={styles.servicebanner}>
@@ -124,14 +152,13 @@ function BookingForm() {
                 <h4><b>{service.operator}</b></h4>
                 <h4>{service.serviceNumber}</h4>
                 <h4>{service.DepartureDate}</h4>
-                <h5 className={styles.overnighticon}>{service.BusType} <span style={{ color: "#ffff80" }}><i className="fa-solid fa-moon yellow"></i></span></h5>
+                { service.BusType === "overnight" ? <h5 className={styles.overnighticon}>{service.BusType} <span style={{ color: "#ffff80" }}><i className="fa-solid fa-moon yellow"></i></span></h5> : null}
               </div>
               <div className={styles.servicedetails}>
                 <div className={styles.OriginDest}>
                   <h4>{service.Origin} to {service.Destination} </h4>
                 </div>
                 <div className={styles.time}>
-                
               
                 </div>
                 <div className={styles.timings}>
@@ -152,45 +179,19 @@ function BookingForm() {
             </div>
           </div>  
           <div className={styles.furtherinfo}>
-            <h5 className={styles.allinfo}>Full Journey Details</h5>
-            <h5 className={styles.amendsearch}>Amend Search</h5>
+            <h5 className={styles.allinfo} onClick={() => setFullInfo(true)}>Full Journey Details</h5>
+            <Link to="/planjourney"className={styles.amendsearch}>Amend Search</Link>
           </div>
         </div>
       </div>
-      {(activeIndex === index) && fullinfo ? <div className={styles.modal}>
-        <div className={styles.detailsModel}>
-          <div className={styles.modaltopbar}>
-            <h2 className={styles.modaltitle}>Service Details</h2>
-            <a onClick={() => handleClick(index)}>close</a>
-          </div>
 
-          <div className={styles.modalmaincontent}>
-            <div>
-              <p>Service Number: {service.serviceNumber}</p>
-              <p>operator: {service.operator}</p>
-              <p>Date: {service.displayDate}</p>
-              <p>From: {service.Origin}</p>
-              <p>Departure Time: {service.DepartureTime}</p>
-              <p>To: {service.Destination}</p>
-              <p>ArrivalTime: {service.ArrivalTime}</p>
-              <p>Type: {service.BusType}</p>
-            </div>
-            <div className={styles.facilitiesandimg}>
-              <div className={styles.facilitiesModel}>
-                { service.facilities.wc ? <div className={styles.facilitiesIconModel}><i className="fa-solid fa-restroom"></i><p>WC</p></div> : null}
-                { service.facilities.aircondition ? <div className={styles.facilitiesIconModel}><i className="fa-regular fa-snowflake"></i><p>Air Conditioning</p></div> : null}
-                { service.facilities.poweroutlet ? <div className={styles.facilitiesIconModel}><i className="fa-solid fa-plug-circle-bolt"></i><p>Plug sockets(UK)</p></div> : null}
-                { service.facilities.accesible ?  <div className={styles.facilitiesIconModel}><i className="fa-solid fa-wheelchair"></i><p>Accesible</p></div> : null}
-                { service.facilities.wifi ? <div className={styles.facilitiesIconModel}><i className="fa-solid fa-wifi"></i><p>Free WIFI</p></div> : null}
-              </div>
-              <div>
-                <img className={styles.Busimages} src={businteriorimg1} />
-                <img className={styles.Busimages} src={businteriorimg2} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> : null}
+      {/*  F U L L   I N F O R M A T I O N    M O D E L  */}
+
+      { fullinfo ? 
+        <FullInfoModal
+          updateState={updateState}
+          serviceInfo={service}
+        /> : null}
       
       {/*  L O G   I N   /   S I G N   U P   /   G U E S T  */}
       
@@ -261,6 +262,7 @@ function BookingForm() {
                   formData.nationality === "Non European Union" ? <p className={styles.immigrationblurb}>Please check the entry requirements for entry into your destination country</p> :
                     null
             }
+            {/* T E R M S    A N D    C O N D I T I O N S */}
             <div className={styles.TC}>
               <label>I agree to the <a>terms and conditions</a></label>
               <input type="checkbox" className={styles.checkbox} onChange={handlecheck}></input>
@@ -269,6 +271,7 @@ function BookingForm() {
             <button onClick={bookservice}>Book Now</button>
           </form>
         </div>
+        
       </div> : null}
     </div> : <p>waiting for data</p>
     
