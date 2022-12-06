@@ -40,7 +40,7 @@ function FullinfoModal(props) {
               <p>{service.DepartureTime.slice(0,5)}</p>
             </div>
             <div className={styles.OriginDestduration}>
-              <p className={styles.duration}>{service.duration.toString().slice(0,1)} Hours</p>
+              <p className={styles.duration}>{Math.floor(service.duration / 60)} Hours</p>
 
             </div>
             <div className={styles.OriginDest}>

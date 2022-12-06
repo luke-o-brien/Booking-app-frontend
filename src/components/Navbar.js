@@ -14,8 +14,8 @@ function Navbar() {
   const loggedIn  = getLoggedInUserId()
   const location = useLocation()
   const navigate = useNavigate()
-  console.log(location)
-  console.log(loggedIn)
+  // console.log(location)
+  // console.log(loggedIn)
   
   
   function handleClick() {

@@ -23,15 +23,9 @@ function Home() {
         flexible to ensure you get home for the celebrations</h3>
         <div className={styles.christmasbannerLink}><Link className={styles.links} to="/FestiveTravel">Festive Travel Information</Link><Link className={styles.links} to="/">View our christmas Timetable</Link></div>
       </div>
-      {/* <div className={styles.buttondiv}>
-        <button className={styles.homebuttons}>Manage My Booking</button>
-        <button className={styles.homebuttons}>Onboard Experience</button>
-        <button className={styles.homebuttons}>FAQ</button>
-        <button className={styles.homebuttons}>Future Plans</button>
-      </div> */}
       <div className={styles.optionCards}>
         <div className={styles.cardcontainer}>
-          <div className={styles.card}>
+          <Link  className={styles.card} to="/Festive Travel">
             <div className={styles.cardcontent}>
               <h2 className={styles.cardtitle}>Christmas Service Changes</h2>
               <p className={styles.cardblurb}>Find out how our services are changing over the festive period and about how to plan the perfect festive getaway with Eurolink</p>
@@ -39,7 +33,7 @@ function Home() {
             <div className={styles.flexbutton}>
               <button className={styles.cardbutton}><i className="fa-solid fa-arrow-right-long"></i></button>
             </div>
-          </div>
+          </Link>
           <div className={styles.card2}>
             <div className={styles.cardcontent}>
               <h2 className={styles.cardtitle}>Onboard</h2>
@@ -62,12 +56,24 @@ function Home() {
         <div className={styles.smallercardcontainer}>
           <div className={styles.smallerCards}>
             <h2>FAQs</h2>
+            <p className={styles.smallerp}>Get fast answers to your burning questions about us, our services, experience and your booking</p>
+            <div className={styles.flexbutton}>
+              <button className={styles.cardbutton}><i className="fa-solid fa-arrow-right-long"></i></button>
+            </div>
           </div>
           <div className={styles.smallerCards}>
-            <h2>Contact Us</h2>
+            <h2 className={styles.smallerh3} >Contact Us</h2>
+            <p className={styles.smallerp}>Have a problem? a question? Let us know, find out how best to get in touch with us here </p>
+            <div className={styles.flexbutton}>
+              <button className={styles.cardbutton}><i className="fa-solid fa-arrow-right-long"></i></button>
+            </div>
           </div>
           <div className={styles.smallerCards}>
-            <h2>Travelling after Brexit</h2>
+            <h2 className={styles.smallerh3}>Entry Requirememts</h2>
+            <p className={styles.smallerp}>Find out everything you need to know about entering the UK and the Schengen Zone</p>
+            <div className={styles.flexbutton}>
+              <button className={styles.cardbutton}><i className="fa-solid fa-arrow-right-long"></i></button>
+            </div>
           </div>
         </div>
       </div>

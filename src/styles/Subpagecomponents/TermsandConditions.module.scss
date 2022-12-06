@@ -1,0 +1,71 @@
+@import "../../Variables/Variables.scss";
+
+// M A I N    M O D A L    S T Y L I N G 
+
+.modal {
+  top: 0;
+  z-index: 3;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0, 0, 0, 0.066);
+}
+
+.detailsModel {
+  z-index: 4;
+  top: 0;
+  background-color: white;
+  position: absolute;
+  margin: 10vh 10vw;
+  width: 80vw;
+  height: 80vh;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  overflow: scroll;
+  border-radius: 0.75rem;
+}
+
+
+// C L O S E    A N D    T I T L E
+
+.modaltopbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $accent-color;
+  color: white;
+  
+  .modaltitle {
+    font-size: 40px;
+    font-weight: 700;
+    margin-left: 2.5%;
+    
+  }
+}
+
+.modalcontent {
+  width: 90%;
+  margin-left: 2%;
+
+  h2 {
+    font-size: 30px;
+    color: $accent-color;
+    margin-top: 20px;
+    margin-left: none;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+}
+
+.closebutton {
+  font-size: 20px;
+  font-weight: 500;
+  padding-right: 20px;
+  color: white;
+} 

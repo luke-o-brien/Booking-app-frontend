@@ -88,6 +88,7 @@ function SearchScreen() {
               <input 
                 className={styles.selectfieldsecond}
                 type="date"
+                min="2022-12-05" max="2022-12-31"
                 name={'date'}
                 onChange={handleChange}
                 value={formData.date}>

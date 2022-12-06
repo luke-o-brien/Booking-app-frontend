@@ -54,14 +54,14 @@ function DisplayServices() {
         return <><div key={index} className={styles.servicecontainer}>
           <div className={styles.servicetop}>
             <div className={styles.servicetopdetails}>
-              <h3 className={styles.time}>{service.DepartureTime} - {service.ArrivalTime}</h3>
+              <h3 className={styles.time}>{service.DepartureTime.slice(0,5)} - {service.ArrivalTime.slice(0,5)}</h3>
             </div>
             <div className={styles.servicetoppricing}>
               <h3 className={styles.price}>€12.50</h3>
             </div>
           </div>
           <div className={styles.servicemaincontainer}>
-            <h4>Journey Duration: {service.duration} hours</h4>
+            <h4>Journey Duration: {Math.floor(service.duration / 60)} Hours</h4>
             <h2>{service.operator} {service.serviceNumber}</h2>
           </div>
           <div className={styles.facilities}>

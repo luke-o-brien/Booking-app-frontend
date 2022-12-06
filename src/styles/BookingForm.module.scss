@@ -1,8 +1,11 @@
+@import "../Variables/Variables.scss";
+
+
 // Service Info
 
 .servicebanner {
   width: 100vw;
-  background-color: #00453e;
+  background-color: $accent-color;
   height: auto;
   color: #ffffff;
   display: flex;
@@ -105,12 +108,18 @@
 
 .amendsearch {
   padding: 15px 40px 15px 40px;
-  background-color: #006d62;
+  background-color: #008a7c;
   margin-top: 5px;
   margin-bottom: 0px;
   border-radius: 10px;
   width:80%;
   text-align: center;
+  color: #ffffff;
+}
+
+.amendsearch:hover {
+  background-color: #00ceba;
+  color: #ffffff;
 }
 
 // R E S E R V A T I O N  F O R M

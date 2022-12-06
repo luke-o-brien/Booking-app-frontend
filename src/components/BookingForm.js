@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
-
 // Custom Functions and components Import
 import { getLoggedInUserId } from "../lib/auth";
 import axios from 'axios'
@@ -15,6 +14,7 @@ import FullInfoModal from "../components/Subpagecomponents/FullInfoModal.js";
 
 // Styles and Images Import 
 import styles from "../styles/BookingForm.module.scss"
+import TermsandConditions from "./Subpagecomponents/TermsandConditions";
 //mport businteriorimg1 from "../images/lux-express-salon-1024x660.jpeg"
 //import businteriorimg2 from "../images/D9egR_gW4AETS-T.jpeg"
 
@@ -26,6 +26,8 @@ function BookingForm() {
   const { serviceId } = useParams()
   const navigate = useNavigate()
   const loggedInUser = getLoggedInUserId()
+  const userId = loggedInUser
+  console.log("user id: " + userId)
   
   // React States 
   const [service, setservice] = React.useState(undefined)
@@ -34,6 +36,8 @@ function BookingForm() {
   const [checkerror, setcheckerror] = React.useState(false)
   //? const [nationality, setNationality] = React.useState(undefined)
   const [fullinfo, setFullInfo] = React.useState(false)
+  const [terms, setterms] = React.useState(false)
+  // const [booking, setBooking] = React.useState(undefined)
 
 
   // Get service data and save to state
@@ -50,6 +54,7 @@ function BookingForm() {
   // Formdata and handlechange functions
   const [formData, setFormData] = React.useState({
     serviceId: serviceId,
+    userId: userId,
     firstName: "",
     lastName: "",
     email: "",
@@ -60,7 +65,7 @@ function BookingForm() {
 
   function handleChange(e) {
     const { name, value } = e.target
-    console.log(formData)
+    // console.log(formData)
 
     setFormData({
       ...formData,
@@ -72,60 +77,82 @@ function BookingForm() {
     setFullInfo(false)
   }
 
+  const updatetc = () => {
+    setterms(false)
+  }
+
   //Book Service Function
   
   async function bookservice(event) {
     event.preventDefault();
+    console.log(formData)
     //!Post form to API
     if (termsAgree === true) {
       try {
         const { data } = await axios.post(`/api/services/${serviceId}/bookings`, formData)
         console.log(data)
+        //setBooking(data)
+        //! Deduct seats from booking object on backend
+        const availableSeats = service.SeatNumber
+        if (availableSeats === 0) {
+        // console.log("sold out")
+        } else {
+          const remainingSeats = availableSeats - 1
+          // console.log(remainingSeats)
+          // console.log("minus one seat")
+          try {
+            const { data } = await axios.put(`/api/services/${serviceId}`, { SeatNumber: remainingSeats })
+            console.log(data)
+            try {
+              const { data } = await axios.post(`/api/users/${loggedInUser}/bookings`, formData)
+              console.log(data)
+              navigate("/BookingConfirmed", { state: {
+                bookingId: data._id,
+                serviceId: serviceId,
+                email: formData.email,
+                firstname: formData.firstName,
+              } })
+    
+            } catch (err) {
+              console.log(err)
+            }
+          } catch (err) {
+            console.log(err)
+          }
+        }
 
       } catch (err) {
         console.log(err.response.data)
       }
-      //! Deduct seats from booking object on backend
-      const availableSeats = service.SeatNumber
-      if (availableSeats === 0) {
-        console.log("sold out")
-      } else {
-        const remainingSeats = availableSeats - 1
-        console.log(remainingSeats)
-        console.log("minus one seat")
-        try {
-          const { data } = await axios.put(`/api/services/${serviceId}`, { SeatNumber: remainingSeats })
-          console.log(data)
-          navigate("/BookingConfirmed", { state: {
-            bookingId: data._id,
-            serviceId: serviceId,
-            email: formData.email,
-            firstname: formData.firstName,
-          } })
-        } catch (err) {
-          console.log(err.response.data)
-        }
-      }
-    //! Send Email to Customer with confirmation of key details
-    // window.Email.send({
-    //   Host: "smtp.elasticemail.com",
-    //   Username: "",
-    //   Password: "",
-    //   To: '',
-    //   From: "",
-    //   Subject: "Booking Confirmation",
-    //   Body: ` <h1 style="color:red;">Booking Confirmed</h1>
-    //   <p>You're off to ${service.Destination}</p>
-    //   <h2>Journey details</h2>`,
-    // }).then(
-    //   message => alert(message)
-    // );
+     
+      
+      //! Send Email to Customer with confirmation of key details
+      //     window.Email.send({
+      //       Host: "smtp.elasticemail.com",
+      //       Username: "lukeobrien02@gmail.com",
+      //       Password: "4FBBD0424B08AA058DA041736426649433B6",
+      //       To: `${formData.email}`,
+      //       From: "",
+      //       Subject: "Booking Confirmation",
+      //       Body: ` <h1 style="color:red;">Booking Confirmed</h1>
+      //     <p>You're off to ${service.Destination}</p>
+      //     <h2>Journey details</h2>`,
+      //     }).then(
+      //       message => alert(message)
+      //     );
     } else {
       console.log("not checked")
       setcheckerror(true)
     }
   }
   
+
+  const options = {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+  };
+  //const displayDate = new Date(service.DepartureDate).toLocaleString('en-GB', options)
 
   //! T&Cs checked ?
   function handlecheck() {
@@ -151,7 +178,7 @@ function BookingForm() {
               <div className={styles.operatorService}>
                 <h4><b>{service.operator}</b></h4>
                 <h4>{service.serviceNumber}</h4>
-                <h4>{service.DepartureDate}</h4>
+                <h4>{new Date(service.DepartureDate).toLocaleString('en-GB', options)}</h4>
                 { service.BusType === "overnight" ? <h5 className={styles.overnighticon}>{service.BusType} <span style={{ color: "#ffff80" }}><i className="fa-solid fa-moon yellow"></i></span></h5> : null}
               </div>
               <div className={styles.servicedetails}>
@@ -164,15 +191,15 @@ function BookingForm() {
                 <div className={styles.timings}>
                   <div className={styles.timediv}>
                     <h4>Depart</h4>
-                    <h4><b>{service.DepartureTime}</b></h4>
+                    <h4><b>{service.DepartureTime.slice(0,5)}</b></h4>
                   </div>
                   <div className={styles.timediv}>
-                    <h4>{` ------ 8 hours ------ `}</h4>
-                    <small> + 1 day</small> 
+                    <h4>{service.duration}</h4>
+                    {(service.DepartureDate === service.ArrivalDate) ? null : <small> + 1 day</small>}
                   </div>
                   <div className={styles.timediv}>
                     <h4>Arrive</h4>
-                    <h4><b>{service.ArrivalTime}</b></h4>
+                    <h4><b>{service.ArrivalTime.slice(0,5)}</b></h4>
                   </div>
                 </div>
               </div>
@@ -264,14 +291,14 @@ function BookingForm() {
             }
             {/* T E R M S    A N D    C O N D I T I O N S */}
             <div className={styles.TC}>
-              <label>I agree to the <a>terms and conditions</a></label>
+              <label>I agree to the <a onClick={() => setterms(true)}>terms and conditions</a></label>
               <input type="checkbox" className={styles.checkbox} onChange={handlecheck}></input>
               { checkerror ? <small className={styles.errors}><b>You must agree to the terms and conditions</b></small> : null}
             </div>
             <button onClick={bookservice}>Book Now</button>
           </form>
         </div>
-        
+        { terms ? <TermsandConditions updatetc={updatetc}/> : null}
       </div> : null}
     </div> : <p>waiting for data</p>
     

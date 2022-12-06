@@ -107,6 +107,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: white;
+}
+
+.card:hover {
+  color: white;
+  cursor: pointer;
 }
 
 .card2 {
@@ -123,6 +129,11 @@
   justify-content: space-between;
 }
 
+.card2:hover {
+  color: white;
+  cursor: pointer;
+}
+
 .card3 {
   width: 31%;
   height: 60vh;
@@ -135,6 +146,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.card3:hover {
+  color: white;
+  cursor: pointer;
 }
 
 .cardcontent {
@@ -190,14 +206,28 @@
 
 .smallerCards {
   width: 31%;
-  height: 15vh;
+  height: 20vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   border-top: solid 10px rgb(0, 71, 64);
   margin-bottom: 10px;
   //box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
   background-color: white;
+
+  .smallerh3 {
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 0;
+  }
+  .smallerp {
+    font-size: 16px;
+  }
+}
+
+.smallerCards:hover {
+  cursor: pointer;
+
 }
 
 //  C H R I S T M A S   B A N N E R   
